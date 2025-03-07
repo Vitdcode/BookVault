@@ -5,8 +5,6 @@ import { AiOutlineHome } from "react-icons/ai";
 import { MdFavoriteBorder } from "react-icons/md";
 
 function App() {
-  const [activeMenu, setActiveMenu] = useState(1);
-
   const links = [
     { id: 1, path: "/home", icon: <AiOutlineHome size={30} /> },
     { id: 2, path: "/favorites", icon: <MdFavoriteBorder size={30} /> },
@@ -27,7 +25,7 @@ function App() {
           </NavLink>
         ))}
       </div>
-      <div>
+      <div className="flex justify-center w-screen">
         <Outlet />
       </div>
     </div>
