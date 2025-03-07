@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import { AiOutlineHome } from "react-icons/ai";
+import { MdFavoriteBorder } from "react-icons/md";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [activeMenu, setActiveMenu] = useState(1);
+
+  const links = [
+    { id: 1, path: "/home", icon: <AiOutlineHome size={30} /> },
+    { id: 2, path: "/favorites", icon: <MdFavoriteBorder size={30} /> },
+  ];
 
   return (
-    <>
+    <div className="flex w-screen h-screen">
+      <div className="w-[200px] ml-10 flex flex-col justify-center gap-5">
+        {links.map((link) => (
+          <NavLink
+            to={link.path}
+            key={link.id}
+            className={({ isActive }) =>
+              `p-4 ${isActive ? "active" : "not-active hover:bg-gray-600"}`
+            }
+          >
+            {link.icon}
+          </NavLink>
+        ))}
+      </div>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <Outlet />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
