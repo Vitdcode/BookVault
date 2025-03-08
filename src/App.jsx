@@ -10,6 +10,8 @@ function App() {
     { id: 2, path: "/favorites", icon: <MdFavoriteBorder size={30} /> },
   ];
 
+  const [books, setBooks] = useState([]);
+
   return (
     <div className="flex w-screen h-screen">
       <div className="w-[200px] ml-10 flex flex-col justify-center gap-5">
@@ -25,8 +27,8 @@ function App() {
           </NavLink>
         ))}
       </div>
-      <div className="flex justify-center w-screen">
-        <Outlet />
+      <div className="flex flex-col items-center gap-20 w-screen">
+        <Outlet context={{ books, setBooks }} />
       </div>
     </div>
   );
