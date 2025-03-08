@@ -20,6 +20,7 @@ const AddToBookmarks = ({ bookData }) => {
         onClick={handleBookmarksToggle}
         size={28}
         className="hover:cursor-pointer hover:bg-base-300"
+        color="rgb(43, 127, 255)"
       />
     ),
     notBookmarked: (
@@ -32,7 +33,7 @@ const AddToBookmarks = ({ bookData }) => {
   };
 
   return (
-    <div className="hover:cursor-pointer hover:bg-base-300 p-2 rounded-full transition duration-300 ease-in-out">
+    <div className="hover:cursor-pointer hover:bg-base-300 p-2 rounded-full transition duration-300 ease-in-out w-fit">
       {isBookmarked ? icons.bookmarked : icons.notBookmarked}
     </div>
   );

@@ -17,7 +17,7 @@ const CompletedStatus = ({ bookData }) => {
     <button className="btn btn-primary" onClick={handleReadingStatus}>
       {isCompleted ? (
         <>
-          Book completed <FaRegCircleCheck />
+          Book completed <FaRegCircleCheck size={20} />
         </>
       ) : (
         "Mark completed"

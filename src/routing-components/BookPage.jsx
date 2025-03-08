@@ -22,14 +22,13 @@ const BookPage = () => {
       <div className="flex flex-col md:flex-row items-center md:items-start gap-8 w-full">
         {/* Book Cover and Title Section */}
         <div className="flex flex-col items-center md:items-start gap-4 relative w-fit">
-          <div className="bg-base-300 p-1 rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105 duration-300">
+          <div className="flex flex-col items-center to-base-200 p-1 rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105 duration-300">
             <img
               src={bookData.coverUrl}
               alt={bookData.title}
               className="h-64 sm:h-80 w-auto object-cover rounded-lg"
             />
           </div>
-          <h2 className="font-bold text-2xl text-center md:text-left">{bookData.title}</h2>
         </div>
 
         {/* Book Details Section */}
@@ -59,7 +58,7 @@ const BookPage = () => {
               </p>
             </div>
           </div>
-
+          <h2 className="font-bold text-2xl text-center md:text-left">{bookData.title}</h2>
           {/* Book Description */}
           <div className="bg-base-100 p-5 rounded-xl shadow-md border border-gray-100">
             <h3 className="font-semibold text-lg mb-3 ">Description</h3>

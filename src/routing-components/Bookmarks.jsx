@@ -1,17 +1,18 @@
 import { useOutletContext } from "react-router-dom";
+import AddToBookmarks from "../functional-components/AddToBookmarks";
+import GenericDesign from "../reusable-components/GenericDesign";
 
 const Bookmarks = () => {
   const { bookmarks } = useOutletContext();
 
   return (
-    <div>
-      {bookmarks.map((book) => (
-        <div key={book.id}>
-          <h2>{book.title}</h2>
-          <img src={book.coverUrl} alt={book.title} />
-        </div>
-      ))}
-    </div>
+    <>
+      <GenericDesign
+        array={bookmarks}
+        title="Bookmarks"
+        renderIcon={(book) => <AddToBookmarks bookData={book} />}
+      />
+    </>
   );
 };
 

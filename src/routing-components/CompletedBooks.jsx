@@ -1,17 +1,16 @@
 import { useOutletContext } from "react-router-dom";
+import CompletedStatus from "../functional-components/CompletedStatus";
+import GenericDesign from "../reusable-components/GenericDesign";
 
 const CompletedBooks = () => {
   const { completedBooks } = useOutletContext();
 
   return (
-    <div>
-      {completedBooks.map((book) => (
-        <div key={book.id}>
-          <h2>{book.title}</h2>
-          <img src={book.coverUrl} alt={book.title} />
-        </div>
-      ))}
-    </div>
+    <GenericDesign
+      array={completedBooks}
+      title="Completed Books"
+      renderIcon={(book) => <CompletedStatus bookData={book} />}
+    />
   );
 };
 

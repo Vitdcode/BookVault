@@ -20,6 +20,7 @@ const AddToFavorites = ({ bookData }) => {
         onClick={handleFavoritesToggle}
         size={30}
         className="hover:cursor-pointer"
+        color="rgb(187, 85, 85)"
       />
     ),
     notFavorite: (
@@ -32,7 +33,7 @@ const AddToFavorites = ({ bookData }) => {
   };
 
   return (
-    <div className="hover:cursor-pointer hover:bg-base-300 p-2 rounded-full transition duration-300 ease-in-out">
+    <div className="hover:cursor-pointer hover:bg-base-300 p-2 rounded-full transition duration-300 ease-in-out w-fit">
       {isFavorite ? icons.favorite : icons.notFavorite}
     </div>
   );

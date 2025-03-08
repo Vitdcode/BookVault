@@ -11,7 +11,7 @@ const Home = () => {
     setFetchedBooks([]);
     const query = searchInput;
     const apiKey = import.meta.env.VITE_API_KEY;
-    const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&langRestrict=en&key=${apiKey}`;
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&langRestrict=en&maxResults=10&key=${apiKey}`;
 
     fetch(url)
       .then((response) => response.json())
