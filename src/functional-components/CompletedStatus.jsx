@@ -1,21 +1,27 @@
 import { useOutletContext } from "react-router-dom";
+import { FaRegCircleCheck } from "react-icons/fa6";
 
 const CompletedStatus = ({ bookData }) => {
-  const { books, setBooks } = useOutletContext();
-  const completedStatusIndex = books.findIndex((book) => book.id === bookData.id);
-  const compeltedStatus = books[completedStatusIndex]?.bookCompleted;
+  const { completedBooks, setCompletedBooks } = useOutletContext();
+  const isCompleted = completedBooks.some((book) => book.id === bookData.id);
 
   const handleReadingStatus = () => {
-    setBooks((prevBooks) =>
-      prevBooks.map((book) =>
-        book.id === bookData.id ? { ...book, bookCompleted: !book.bookCompleted } : book
-      )
-    );
+    if (isCompleted) {
+      setCompletedBooks(completedBooks.filter((book) => book.id != bookData.id));
+    } else {
+      setCompletedBooks([...completedBooks, bookData]);
+    }
   };
 
   return (
     <button className="btn btn-primary" onClick={handleReadingStatus}>
-      {compeltedStatus ? "Unmark completed" : "Mark completed"}
+      {isCompleted ? (
+        <>
+          Book completed <FaRegCircleCheck />
+        </>
+      ) : (
+        "Mark completed"
+      )}
     </button>
   );
 };

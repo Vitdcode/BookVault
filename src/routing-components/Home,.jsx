@@ -1,36 +1,36 @@
 import { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 import { Link, useOutletContext } from "react-router-dom";
 
 const Home = () => {
   const [searchInput, setSearchInput] = useState("");
-  const { books, setBooks } = useOutletContext();
+  const { fetchedBooks, setFetchedBooks } = useOutletContext();
 
   const handleFetch = (e) => {
     e.preventDefault();
-    setBooks([]);
+    setFetchedBooks([]);
     const query = searchInput;
-    console.log(query);
     const apiKey = import.meta.env.VITE_API_KEY;
     const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&langRestrict=en&key=${apiKey}`;
 
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         data.items.forEach((book) => {
           const bookData = book.volumeInfo;
           const coverUrl = bookData.imageLinks?.thumbnail;
-
           if (!coverUrl || !bookData.description) return;
 
-          setBooks((prevBooks) => [
+          setFetchedBooks((prevBooks) => [
             ...prevBooks,
             {
               id: book.id,
               title: bookData.title,
               coverUrl: coverUrl,
               description: bookData.description,
-              bookCompleted: false,
+              authors: bookData.authors,
+              pageCount: bookData.pageCount,
+              publishedDate: bookData.publishedDate,
             },
           ]);
         });
@@ -40,38 +40,58 @@ const Home = () => {
 
   return (
     <>
-      <form onSubmit={(e) => handleFetch(e)} className="mt-10">
-        <fieldset className="fieldset w-xs bg-base-200 border border-base-300 p-4 rounded-box">
-          <legend className="fieldset-legend">Book Search</legend>
+      <form onSubmit={(e) => handleFetch(e)} className="mt-10 max-w-4xl mx-auto">
+        <h2 className="text-xl font-semibold mb-4">Book Search</h2>
+
+        <div className="relative flex items-center">
           <input
             type="text"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            className="input"
+            className="input w-full px-4 py-3 pr-24 pl-10 bg-base-200 border border-gray-200 
+            rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
             placeholder="Enter book title"
           />
-          <button role="submit" className="btn btn-accent">
+          <svg
+            className="absolute left-3 text-gray-400"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M21 21L15.8033 15.8033M15.8033 15.8033C17.1605 14.4461 18 12.5711 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18C12.5711 18 14.4461 17.1605 15.8033 15.8033Z"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+
+          <button
+            type="submit"
+            className="absolute right-0 h-full px-4 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700 transition-colors"
+          >
             Search
           </button>
-        </fieldset>
+        </div>
       </form>
-      <div className="flex flex-wrap gap-10">
-        {books &&
-          books.map((book) => (
+
+      <div className="mt-10 flex flex-wrap gap-8 justify-center px-4">
+        {fetchedBooks &&
+          fetchedBooks.map((book) => (
             <Link
               to={`/book/${book.id}`}
               key={book.id}
-              className="flex flex-col gap-3 p-4 rounded-2xl bg-base-200 transition-transform transform scale-100 hover:scale-105 duration-300 ease-in-out hover:cursor-pointer"
-              state={{
-                title: book.title,
-                coverUrl: book.coverUrl,
-                description: book.description,
-                bookCompleted: book.bookCompleted,
-                id: book.id,
-              }}
+              className="flex flex-col items-center bg-base-100 rounded-xl shadow-lg 
+            transition-transform transform scale-100 hover:scale-105 duration-300 ease-in-out 
+            hover:cursor-pointer hover:shadow-xl w-48 overflow-hidden"
             >
-              <h1 className="text-center">{book.title}</h1>
-              <img src={book.coverUrl} alt="" />
+              <img src={book.coverUrl} alt={book.title} className="w-full h-64 object-cover" />
+              <div className="p-4 w-full">
+                <h2 className="text-lg font-semibold text-center line-clamp-2">{book.title}</h2>
+              </div>
             </Link>
           ))}
       </div>
