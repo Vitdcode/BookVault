@@ -1,11 +1,12 @@
-import { useLocation, useOutletContext, useParams } from "react-router-dom";
+import { useLocation, useOutletContext } from "react-router-dom";
 import CompletedStatus from "../functional-components/CompletedStatus";
 import AddToFavorites from "../functional-components/AddToFavorites";
 import AddToBookmarks from "../functional-components/AddToBookmarks";
 import { RxAvatar } from "react-icons/rx";
 import { GoBook } from "react-icons/go";
-import { FaRegCalendarAlt } from "react-icons/fa";
+import { LuPen } from "react-icons/lu";
 import Rating from "../functional-components/Rating";
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 const BookPage = () => {
   const { completedBooks } = useOutletContext();
@@ -80,6 +81,12 @@ const BookPage = () => {
         </div>
         <div className="transition-transform hover:scale-105">
           <AddToBookmarks bookData={bookData} />
+        </div>
+        <div className="transition-transform hover:scale-105">
+          <button className="btn btn-outline gap-2">
+            <LuPen size={20} />
+            Write a Review
+          </button>
         </div>
       </div>
     </div>

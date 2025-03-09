@@ -32,6 +32,7 @@ const Home = () => {
               pageCount: bookData.pageCount,
               publishedDate: bookData.publishedDate,
               rating: null,
+              review: null,
             },
           ]);
         });

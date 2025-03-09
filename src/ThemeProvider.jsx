@@ -39,7 +39,7 @@ const ThemeProvider = () => {
   ];
 
   return (
-    <div className="dropdown mb-72 absolute left-10 top-0">
+    <div className="dropdown mb-72 absolute left-10 top-5">
       <div tabIndex={0} role="button" className="btn m-1">
         Theme
         <svg
@@ -62,7 +62,7 @@ const ThemeProvider = () => {
             <input
               type="radio"
               name="theme-dropdown"
-              className="theme-controller w-full btn btn-sm btn-block btn-ghost justify-start"
+              className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
               aria-label={theme}
               value={theme}
             />
