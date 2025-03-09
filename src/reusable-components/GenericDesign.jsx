@@ -16,6 +16,7 @@ const GenericDesign = ({ array, renderIcon, title }) => {
                 to={`/book/${book.id}`}
                 key={book.id}
                 className="flex flex-col items-center rounded-xl shadow-lg overflow-hidden hover:-translate-y-1 transition-transform duration-200 hover:cursor-pointer"
+                state={{ book }}
               >
                 <img src={book.coverUrl} alt="" className="p-2 shadow-lg bg-base-200 rounded-lg" />
 

@@ -1,34 +1,37 @@
-import { useOutletContext, useParams } from "react-router-dom";
+import { useLocation, useOutletContext, useParams } from "react-router-dom";
 import CompletedStatus from "../functional-components/CompletedStatus";
 import AddToFavorites from "../functional-components/AddToFavorites";
 import AddToBookmarks from "../functional-components/AddToBookmarks";
 import { RxAvatar } from "react-icons/rx";
 import { GoBook } from "react-icons/go";
 import { FaRegCalendarAlt } from "react-icons/fa";
+import Rating from "../functional-components/Rating";
 
 const BookPage = () => {
-  const { fetchedBooks } = useOutletContext();
-  const { id } = useParams();
-  const bookIndex = fetchedBooks.findIndex((book) => book.id === id);
-  const bookData = fetchedBooks[bookIndex];
+  const { completedBooks } = useOutletContext();
+  const location = useLocation();
+  const bookData = location.state.book;
+  const completedBook = completedBooks.find((b) => b.id === bookData.id);
 
   function convertToMetricDate(americanDate) {
+    if (!americanDate) return "";
     const [year, month, day] = americanDate.split("-");
     return `${day}.${month}.${year}`;
   }
 
   return (
-    <div className="flex flex-col justify-center items-center m-10 max-w-4xl mx-auto">
+    <div className="flex flex-col justify-center items-center m-10 max-w-4xl mx-auto mt-30">
       <div className="flex flex-col md:flex-row items-center md:items-start gap-8 w-full">
         {/* Book Cover and Title Section */}
         <div className="flex flex-col items-center md:items-start gap-4 relative w-fit">
-          <div className="flex flex-col items-center to-base-200 p-1 rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105 duration-300">
+          <div className="bg-base-200 p-1 rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105 duration-300">
             <img
               src={bookData.coverUrl}
               alt={bookData.title}
               className="h-64 sm:h-80 w-auto object-cover rounded-lg"
             />
           </div>
+          <Rating completedBook={completedBook} />
         </div>
 
         {/* Book Details Section */}
