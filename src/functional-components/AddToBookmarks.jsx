@@ -1,23 +1,20 @@
-import { FaRegBookmark } from "react-icons/fa";
-import { FaBookmark } from "react-icons/fa";
 import { useOutletContext } from "react-router-dom";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+import toggleProperty from "./toggleProperty";
 
 const AddToBookmarks = ({ bookData }) => {
-  const { bookmarks, setBookmarks } = useOutletContext();
-  const isBookmarked = bookmarks.some((book) => book.id === bookData.id);
+  const { books, setBooks } = useOutletContext();
 
-  const handleBookmarksToggle = () => {
-    if (isBookmarked) {
-      setBookmarks(bookmarks.filter((book) => book.id != bookData.id));
-    } else {
-      setBookmarks([...bookmarks, bookData]);
-    }
-  };
+  // Check if the book is in the persistent books state and bookmarked
+  const isBookmarked = books.find((book) => book.id === bookData.id)?.isBookmarked || false;
+
+  const handleBookmarksToggle = (e) =>
+    toggleProperty(books, setBooks, bookData, "isBookmarked", "isCompleted", "isFavorite", e);
 
   const icons = {
     bookmarked: (
       <FaBookmark
-        onClick={handleBookmarksToggle}
+        onClick={(e) => handleBookmarksToggle(e)}
         size={28}
         className="hover:cursor-pointer hover:bg-base-300"
         color="rgb(43, 127, 255)"
@@ -25,7 +22,7 @@ const AddToBookmarks = ({ bookData }) => {
     ),
     notBookmarked: (
       <FaRegBookmark
-        onClick={handleBookmarksToggle}
+        onClick={(e) => handleBookmarksToggle(e)}
         size={28}
         className="hover:cursor-pointer hover:bg-base-300"
       />

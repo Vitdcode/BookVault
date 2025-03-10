@@ -15,10 +15,8 @@ function App() {
     { id: 4, path: "/completed", icon: <FaCheck size={30} /> },
   ];
 
-  const [fetchedBooks, setFetchedBooks] = useState([]);
-  const [favorites, setFavorites] = useState([]);
-  const [bookmarks, setBookmarks] = useState([]);
-  const [completedBooks, setCompletedBooks] = useState([]);
+  const [fetchedBooks, setFetchedBooks] = useState([]); //used for fetching
+  const [books, setBooks] = useState([]); //used for rendering
 
   return (
     <div className="flex w-screen h-screen">
@@ -43,12 +41,8 @@ function App() {
           context={{
             fetchedBooks,
             setFetchedBooks,
-            favorites,
-            setFavorites,
-            bookmarks,
-            setBookmarks,
-            completedBooks,
-            setCompletedBooks,
+            books,
+            setBooks,
           }}
         />
       </div>

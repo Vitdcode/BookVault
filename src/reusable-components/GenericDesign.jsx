@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
+import Rating from "../functional-components/Rating";
 
-const GenericDesign = ({ array, renderIcon, title }) => {
+const GenericDesign = ({ renderIcon, title, searchTerm }) => {
+  const { books } = useOutletContext();
+  const filteredArray = books.filter((book) => book[searchTerm]);
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 mt-30">
-      {array.length === 0 ? (
+      {filteredArray.length === 0 ? (
         <div className="text-center py-16 text-base-content text-lg">
           No items yet. Start adding some!
         </div>
@@ -11,19 +14,19 @@ const GenericDesign = ({ array, renderIcon, title }) => {
         <>
           <h1 className="text-3xl font-bold mb-8">{title}</h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {array.map((book) => (
+            {filteredArray.map((book) => (
               <Link
                 to={`/book/${book.id}`}
                 key={book.id}
-                className="flex flex-col items-center rounded-xl shadow-lg overflow-hidden hover:-translate-y-1 transition-transform duration-200 hover:cursor-pointer"
-                state={{ book }}
+                className="flex flex-col items-center justify-around rounded-xl shadow-lg overflow-hidden hover:-translate-y-1 transition-transform duration-200 hover:cursor-pointer"
               >
                 <img src={book.coverUrl} alt="" className="p-2 shadow-lg bg-base-200 rounded-lg" />
 
                 <div className="p-6">
-                  <h2 className="text-xl font-semibold text-base-content mb-2 line-clamp-2">
+                  <h2 className="text-xl font-semibold text-base-content mb-2 line-clamp-1">
                     {book.title}
                   </h2>
+                  {book.isCompleted && <Rating completedBook={book} />}
                   {book.authors && (
                     <p className="text-sm text-secondary mb-4 p-2 bg-base-200 rounded">
                       by {book.authors.join(", ")}

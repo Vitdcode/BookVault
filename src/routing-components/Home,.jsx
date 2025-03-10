@@ -33,6 +33,9 @@ const Home = () => {
               publishedDate: bookData.publishedDate,
               rating: null,
               review: null,
+              isFavorite: false,
+              isBookmarked: false,
+              isCompleted: false,
             },
           ]);
         });
@@ -86,7 +89,6 @@ const Home = () => {
             <Link
               to={`/book/${book.id}`}
               key={book.id}
-              state={{ book }}
               className="flex flex-col items-center bg-base-100 rounded-xl shadow-lg 
             transition-transform transform scale-100 hover:scale-105 duration-300 ease-in-out 
             hover:cursor-pointer hover:shadow-xl w-48 overflow-hidden"

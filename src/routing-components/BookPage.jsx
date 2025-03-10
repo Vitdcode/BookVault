@@ -1,4 +1,4 @@
-import { useLocation, useOutletContext } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import CompletedStatus from "../functional-components/CompletedStatus";
 import AddToFavorites from "../functional-components/AddToFavorites";
 import AddToBookmarks from "../functional-components/AddToBookmarks";
@@ -9,10 +9,13 @@ import Rating from "../functional-components/Rating";
 import { FaRegCalendarAlt } from "react-icons/fa";
 
 const BookPage = () => {
-  const { completedBooks } = useOutletContext();
-  const location = useLocation();
-  const bookData = location.state.book;
-  const completedBook = completedBooks.find((b) => b.id === bookData.id);
+  const { books, fetchedBooks } = useOutletContext();
+  const { id } = useParams();
+  const bookData = books.find((b) => b.id === id) || fetchedBooks.find((b) => b.id === id);
+  console.log(fetchedBooks);
+  if (!bookData) return;
+  console.log(bookData);
+  // depending on the route, the bookData will be either from the books state or the fetchedBooks state
 
   function convertToMetricDate(americanDate) {
     if (!americanDate) return "";
@@ -32,7 +35,7 @@ const BookPage = () => {
               className="h-64 sm:h-80 w-auto object-cover rounded-lg"
             />
           </div>
-          <Rating completedBook={completedBook} />
+          {bookData.isCompleted && <Rating completedBook={bookData} />}
         </div>
 
         {/* Book Details Section */}

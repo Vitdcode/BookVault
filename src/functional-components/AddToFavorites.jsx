@@ -1,23 +1,19 @@
 import { useOutletContext } from "react-router-dom";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { MdOutlineFavorite } from "react-icons/md";
+import toggleProperty from "./toggleProperty";
 
 const AddToFavorites = ({ bookData }) => {
-  const { favorites, setFavorites } = useOutletContext();
-  const isFavorite = favorites.some((book) => book.id === bookData.id);
+  const { books, setBooks } = useOutletContext();
+  const isFavorite = books.find((book) => book.id === bookData.id)?.isFavorite || false;
 
-  const handleFavoritesToggle = () => {
-    if (isFavorite) {
-      setFavorites(favorites.filter((book) => book.id != bookData.id));
-    } else {
-      setFavorites([...favorites, bookData]);
-    }
-  };
+  const handleFavoritesToggle = (e) =>
+    toggleProperty(books, setBooks, bookData, "isFavorite", "isCompleted", "isBookmarked", e);
 
   const icons = {
     favorite: (
       <MdOutlineFavorite
-        onClick={handleFavoritesToggle}
+        onClick={(e) => handleFavoritesToggle(e)}
         size={30}
         className="hover:cursor-pointer"
         color="rgb(187, 85, 85)"
@@ -25,7 +21,7 @@ const AddToFavorites = ({ bookData }) => {
     ),
     notFavorite: (
       <MdOutlineFavoriteBorder
-        onClick={handleFavoritesToggle}
+        onClick={(e) => handleFavoritesToggle(e)}
         size={30}
         className="hover:cursor-pointer"
       />

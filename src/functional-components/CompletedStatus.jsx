@@ -1,20 +1,16 @@
 import { useOutletContext } from "react-router-dom";
 import { FaRegCircleCheck } from "react-icons/fa6";
+import toggleProperty from "./toggleProperty";
 
 const CompletedStatus = ({ bookData }) => {
-  const { completedBooks, setCompletedBooks } = useOutletContext();
-  const isCompleted = completedBooks.some((book) => book.id === bookData.id);
+  const { books, setBooks } = useOutletContext();
+  const isCompleted = books.find((book) => book.id === bookData.id)?.isCompleted || false;
 
-  const handleReadingStatus = () => {
-    if (isCompleted) {
-      setCompletedBooks(completedBooks.filter((book) => book.id != bookData.id));
-    } else {
-      setCompletedBooks([...completedBooks, bookData]);
-    }
-  };
+  const handleReadingStatus = (e) =>
+    toggleProperty(books, setBooks, bookData, "isCompleted", "isFavorite", "isBookmarked", e);
 
   return (
-    <button className="btn btn-primary" onClick={handleReadingStatus}>
+    <button className="btn btn-primary" onClick={(e) => handleReadingStatus(e)}>
       {isCompleted ? (
         <>
           Book completed <FaRegCircleCheck size={20} />
