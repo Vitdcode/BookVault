@@ -4,21 +4,24 @@ import AddToFavorites from "../functional-components/AddToFavorites";
 import AddToBookmarks from "../functional-components/AddToBookmarks";
 import { RxAvatar } from "react-icons/rx";
 import { GoBook } from "react-icons/go";
-import { LuPen } from "react-icons/lu";
 import Rating from "../functional-components/Rating";
 import { FaRegCalendarAlt } from "react-icons/fa";
+import WriteReview from "../functional-components/WriteReview";
+import { useState } from "react";
+import TextEditor from "../Tiptap/Tiptap";
 
 const BookPage = () => {
   const { books, fetchedBooks } = useOutletContext();
   const { id } = useParams();
+  const [showFullDescription, setShowFullDescription] = useState(false);
   const bookData = books.find((b) => b.id === id) || fetchedBooks.find((b) => b.id === id);
-  console.log(fetchedBooks);
   if (!bookData) return;
-  console.log(bookData);
   // depending on the route, the bookData will be either from the books state or the fetchedBooks state
 
   function convertToMetricDate(americanDate) {
     if (!americanDate) return "";
+    if (!americanDate.includes("-")) return americanDate;
+
     const [year, month, day] = americanDate.split("-");
     return `${day}.${month}.${year}`;
   }
@@ -68,28 +71,39 @@ const BookPage = () => {
           <h2 className="font-bold text-2xl text-center md:text-left">{bookData.title}</h2>
           {/* Book Description */}
           <div className="bg-base-100 p-5 rounded-xl shadow-md border border-gray-100">
-            <h3 className="font-semibold text-lg mb-3 ">Description</h3>
-            <p className="leading-relaxed">{bookData.description}</p>
+            <h3 className="font-semibold text-lg mb-3">Description</h3>
+            <div
+              className="overflow-hidden transition-all duration-300 ease-in-out"
+              style={{
+                maxHeight: showFullDescription ? "600px" : "100px", // Adjust max height as needed
+              }}
+            >
+              <p className="leading-relaxed">{bookData.description}</p>
+            </div>
+            <button
+              onClick={() => setShowFullDescription(!showFullDescription)}
+              className="text-blue-500 mt-2 cursor-pointer hover:underline"
+            >
+              {showFullDescription ? "Show Less" : "Read More"}
+            </button>
           </div>
-        </div>
-      </div>
+          <TextEditor />
 
-      {/* Action Buttons */}
-      <div className="flex items-center justify-center gap-6 mt-10 w-full">
-        <div className="transition-transform hover:scale-105">
-          <CompletedStatus bookData={bookData} />
-        </div>
-        <div className="transition-transform hover:scale-105">
-          <AddToFavorites bookData={bookData} />
-        </div>
-        <div className="transition-transform hover:scale-105">
-          <AddToBookmarks bookData={bookData} />
-        </div>
-        <div className="transition-transform hover:scale-105">
-          <button className="btn btn-outline gap-2">
-            <LuPen size={20} />
-            Write a Review
-          </button>
+          {/* Book Actions */}
+          <div className="flex items-center justify-center gap-6 mt-10 w-full relative">
+            <div className="transition-transform hover:scale-105">
+              <CompletedStatus bookData={bookData} />
+            </div>
+            <div className="transition-transform hover:scale-105">
+              <AddToFavorites bookData={bookData} />
+            </div>
+            <div className="transition-transform hover:scale-105">
+              <AddToBookmarks bookData={bookData} />
+            </div>
+            <div>
+              <WriteReview bookData={bookData} />
+            </div>
+          </div>
         </div>
       </div>
     </div>

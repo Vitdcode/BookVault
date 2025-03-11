@@ -1,7 +1,7 @@
 import { useOutletContext } from "react-router-dom";
 
 const Rating = ({ completedBook }) => {
-  console.log(completedBook);
+  completedBook;
   const { setBooks } = useOutletContext();
 
   const handleRatingChange = (e) => {

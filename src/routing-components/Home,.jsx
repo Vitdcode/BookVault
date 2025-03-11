@@ -32,7 +32,7 @@ const Home = () => {
               pageCount: bookData.pageCount,
               publishedDate: bookData.publishedDate,
               rating: null,
-              review: null,
+              review: "",
               isFavorite: false,
               isBookmarked: false,
               isCompleted: false,
