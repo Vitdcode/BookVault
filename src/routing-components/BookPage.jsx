@@ -87,7 +87,6 @@ const BookPage = () => {
               {showFullDescription ? "Show Less" : "Read More"}
             </button>
           </div>
-          <TextEditor />
 
           {/* Book Actions */}
           <div className="flex items-center justify-center gap-6 mt-10 w-full relative">

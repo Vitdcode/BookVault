@@ -7,3 +7,21 @@
 #root {
   font-family: "Poppins", sans-serif;
 }
+
+button:hover {
+  cursor: pointer;
+}
+
+.ProseMirror-focused {
+  outline: none;
+}
+
+ul {
+  list-style-type: disc; /* Forces bullet points */
+  padding-left: 1rem; /* Ensures bullets are visible */
+}
+
+mark {
+  border-radius: 2px;
+  padding: 2px;
+}
