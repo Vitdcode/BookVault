@@ -32,7 +32,7 @@ const TextEditor = ({ content, handleContentChange }) => {
   return (
     <div className="border border-base-100 p-4 rounded-lg shadow-lg">
       {/* Toolbar */}
-      <div className="flex flex-wrap gap-2 mb-2 p-2 border-b">
+      <div className="flex flex-wrap gap-2 mb-2 p-2">
         {/* Formatting */}
         <div className="flex flex-wrap gap-2 mb-2">
           <button

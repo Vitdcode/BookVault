@@ -6,6 +6,8 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { FaRegBookmark } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
 import ThemeProvider from "./ThemeProvider";
+import bookImg from "/books.png";
+import appTitleImg from "/app-title.png";
 
 function App() {
   const links = [
@@ -19,19 +21,25 @@ function App() {
   const [books, setBooks] = useState([]); //used for rendering
 
   return (
-    <div className="flex w-screen h-screen">
-      <div className="w-[100px] ml-10 flex flex-col justify-center gap-5 border-r border-base-300">
-        {links.map((link) => (
-          <NavLink
-            to={link.path}
-            key={link.id}
-            className={({ isActive }) =>
-              `p-4 ${isActive ? "active" : "not-active hover:bg-base-300"}`
-            }
-          >
-            {link.icon}
-          </NavLink>
-        ))}
+    <div className="flex w-screen h-screen relative">
+      <div className="w-[120px] flex flex-col justify-center items-center gap-5 border-r border-base-300 ">
+        <div className="bg-base-300 p-5 shadow-lg mb-auto top-0 left-0 w-[100%]">
+          <img src={bookImg} alt="Book Image" className="" />
+          <img src={appTitleImg} alt="App Title" className="" />
+        </div>
+        <div className="w-[100%] h-[100%] flex flex-col justify-center items-center gap-5 border-r border-base-300 mb-[150px]">
+          {links.map((link) => (
+            <NavLink
+              to={link.path}
+              key={link.id}
+              className={({ isActive }) =>
+                `p-4 ${isActive ? "active" : "not-active hover:bg-base-300"}`
+              }
+            >
+              {link.icon}
+            </NavLink>
+          ))}
+        </div>
       </div>
 
       <div className="flex flex-col items-center gap-20 w-screen relative">
