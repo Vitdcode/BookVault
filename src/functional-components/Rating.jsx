@@ -1,13 +1,22 @@
 import { useOutletContext } from "react-router-dom";
+import updateServerData from "../backend-json/updateServerData";
 
 const Rating = ({ completedBook }) => {
   completedBook;
-  const { setBooks } = useOutletContext();
+  const { books, setBooks } = useOutletContext();
 
   const handleRatingChange = (e) => {
-    setBooks((prev) =>
+    let updatedRating;
+
+    /*     setBooks((prev) =>
       prev.map((b) => (b.id === completedBook.id ? { ...b, rating: e.target.value } : b))
+    ); */
+
+    updatedRating = books.map((book) =>
+      book.id === completedBook.id ? { ...book, rating: e.target.value } : book
     );
+    setBooks(updatedRating);
+    updateServerData(updatedRating);
   };
 
   return (

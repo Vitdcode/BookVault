@@ -20,19 +20,25 @@ function App() {
 
   const [fetchedBooks, setFetchedBooks] = useState([]); //used for fetching
   const [books, setBooks] = useState([]); //used for rendering
+  const [theme, setTheme] = useState("");
+  /*   const theme = useRef(""); */
 
   useEffect(() => {
     const fetchData = async () => {
       const url = "/api";
       const response = await fetch(url);
       const data = await response.json();
+      data.theme;
+      setTheme(data.theme);
+      /*       theme.current = data.theme; */
       if (!data || !data.books) return [];
+
+      data;
       return setBooks(data.books);
     };
 
     fetchData();
   }, []);
-  books;
 
   return (
     <div className="flex w-screen h-screen relative">
@@ -57,7 +63,7 @@ function App() {
       </div>
 
       <div className="flex flex-col items-center gap-20 w-screen relative">
-        <ThemeProvider />
+        <ThemeProvider savedTheme={theme} />
 
         <Outlet
           context={{

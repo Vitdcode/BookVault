@@ -1,6 +1,7 @@
 import { useOutletContext } from "react-router-dom";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import toggleProperty from "./toggleProperty";
+import updateServerData from "../backend-json/updateServerData";
 
 const AddToBookmarks = ({ bookData }) => {
   const { books, setBooks } = useOutletContext();
@@ -8,8 +9,18 @@ const AddToBookmarks = ({ bookData }) => {
   // Check if the book is in the persistent books state and bookmarked
   const isBookmarked = books.find((book) => book.id === bookData.id)?.isBookmarked || false;
 
-  const handleBookmarksToggle = (e) =>
-    toggleProperty(books, setBooks, bookData, "isBookmarked", "isCompleted", "isFavorite", e);
+  const handleBookmarksToggle = (e) => {
+    const updatedBooks = toggleProperty(
+      books,
+      setBooks,
+      bookData,
+      "isBookmarked",
+      "isCompleted",
+      "isFavorite",
+      e
+    );
+    updateServerData(updatedBooks);
+  };
 
   const icons = {
     bookmarked: (

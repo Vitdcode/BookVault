@@ -16,7 +16,7 @@ const server = http.createServer(async (req, res) => {
       console.error("Error reading file:", err);
     }
   } else if (req.method === "POST") {
-    // 📌 Handle JSON writing
+    // 📌 Handle JSON writing (Merging new data)
     let body = "";
     req.on("data", (chunk) => {
       body += chunk;
@@ -24,7 +24,24 @@ const server = http.createServer(async (req, res) => {
 
     req.on("end", async () => {
       try {
-        await writeFile(filePath, body, "utf-8");
+        const newData = JSON.parse(body); // The data sent from frontend
+        newData;
+        // Read existing data from the file
+        let existingData = {};
+        try {
+          const fileContent = await readFile(filePath, "utf-8");
+          existingData = JSON.parse(fileContent);
+          existingData;
+        } catch (error) {
+          console.error("📂 No existing file found or JSON is empty, creating new.", error);
+        }
+
+        // Merge new data with existing data
+        const updatedData = { ...existingData, ...newData };
+
+        // Write back the merged data
+        await writeFile(filePath, JSON.stringify(updatedData, null, 2), "utf-8");
+
         res.writeHead(200, { "Content-Type": "text/plain" });
         res.end("✅ JSON file updated successfully!");
       } catch (err) {
@@ -39,4 +56,4 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(8080, () => "🚀 Server running on http://localhost:8080");
+server.listen(8080, () => console.log("🚀 Server running on http://localhost:8080"));

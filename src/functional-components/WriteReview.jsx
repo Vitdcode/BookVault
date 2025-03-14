@@ -2,6 +2,7 @@ import { useState } from "react";
 import { LuPen } from "react-icons/lu";
 import { useOutletContext } from "react-router-dom";
 import TextEditor from "../Tiptap/Tiptap";
+import updateServerData from "../backend-json/updateServerData";
 
 const WriteReview = ({ bookData }) => {
   const { books, setBooks } = useOutletContext();
@@ -24,7 +25,13 @@ const WriteReview = ({ bookData }) => {
     <div>
       <button
         className="btn btn-outline gap-2 w-[160px]"
-        onClick={() => setEditReview(!editReview)}
+        onClick={() => {
+          let flag = !editReview;
+          setEditReview(flag);
+          if (!flag) {
+            updateServerData(books);
+          }
+        }}
       >
         <LuPen size={20} />
         {editReview ? "Save" : "Write a review"}

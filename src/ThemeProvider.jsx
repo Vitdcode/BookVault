@@ -1,6 +1,14 @@
-const ThemeProvider = () => {
+import { updateTheme } from "./backend-json/updateServerData";
+
+const ThemeProvider = ({ savedTheme }) => {
+  savedTheme;
+  if (savedTheme) {
+    document.documentElement.setAttribute("data-theme", savedTheme);
+  }
+
   const handleChangeTheme = (e) => {
     document.documentElement.setAttribute("data-theme", e.target.value);
+    updateTheme(e.target.value);
   };
 
   const themes = [
