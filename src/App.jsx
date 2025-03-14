@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
@@ -8,6 +8,7 @@ import { FaCheck } from "react-icons/fa";
 import ThemeProvider from "./ThemeProvider";
 import bookImg from "/books.png";
 import appTitleImg from "/app-title.png";
+import { GoServer } from "react-icons/go";
 
 function App() {
   const links = [
@@ -19,6 +20,19 @@ function App() {
 
   const [fetchedBooks, setFetchedBooks] = useState([]); //used for fetching
   const [books, setBooks] = useState([]); //used for rendering
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const url = "/api";
+      const response = await fetch(url);
+      const data = await response.json();
+      if (!data || !data.books) return [];
+      return setBooks(data.books);
+    };
+
+    fetchData();
+  }, []);
+  books;
 
   return (
     <div className="flex w-screen h-screen relative">

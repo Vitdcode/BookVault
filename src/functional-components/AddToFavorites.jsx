@@ -2,14 +2,32 @@ import { useOutletContext } from "react-router-dom";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { MdOutlineFavorite } from "react-icons/md";
 import toggleProperty from "./toggleProperty";
+import { useEffect, useRef } from "react";
 
 const AddToFavorites = ({ bookData }) => {
   const { books, setBooks } = useOutletContext();
   const isFavorite = books.find((book) => book.id === bookData.id)?.isFavorite || false;
-
-  const handleFavoritesToggle = (e) =>
+  /*   const handleFavoritesToggle = (e) => {
     toggleProperty(books, setBooks, bookData, "isFavorite", "isCompleted", "isBookmarked", e);
+    updateServerData(books);
+  };
+  useEffect(() => {
+    updateServerData(books);
+  }, [books]); */
 
+  const handleFavoritesToggle = (e) => {
+    const updatedBooks = toggleProperty(
+      books,
+      setBooks,
+      bookData,
+      "isFavorite",
+      "isCompleted",
+      "isBookmarked",
+      e
+    );
+    updatedBooks;
+    updateServerData(updatedBooks); // Call with the updated books
+  };
   const icons = {
     favorite: (
       <MdOutlineFavorite
@@ -36,3 +54,18 @@ const AddToFavorites = ({ bookData }) => {
 };
 
 export default AddToFavorites;
+
+const updateServerData = (books) => {
+  if (books.length === 0) return;
+  try {
+    fetch("/api", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ books: books }),
+    });
+  } catch (error) {
+    if (error) {
+      console.error(error);
+    }
+  }
+};
