@@ -1,7 +1,7 @@
 import { useOutletContext } from "react-router-dom";
 import { FaRegCircleCheck } from "react-icons/fa6";
 import toggleProperty from "./toggleProperty";
-import updateServerData from "../backend-json/updateServerData";
+import updateBookData from "../backend-json/updateServerData";
 
 const CompletedStatus = ({ bookData }) => {
   const { books, setBooks } = useOutletContext();
@@ -17,7 +17,7 @@ const CompletedStatus = ({ bookData }) => {
       "isBookmarked",
       e
     );
-    updateServerData(updatedBooks);
+    updateBookData(updatedBooks);
   };
 
   return (

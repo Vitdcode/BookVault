@@ -2,7 +2,7 @@ import { useState } from "react";
 import { LuPen } from "react-icons/lu";
 import { useOutletContext } from "react-router-dom";
 import TextEditor from "../Tiptap/Tiptap";
-import updateServerData from "../backend-json/updateServerData";
+import updateBookData from "../backend-json/updateServerData";
 
 const WriteReview = ({ bookData }) => {
   const { books, setBooks } = useOutletContext();
@@ -29,7 +29,7 @@ const WriteReview = ({ bookData }) => {
           let flag = !editReview;
           setEditReview(flag);
           if (!flag) {
-            updateServerData(books);
+            updateBookData(books);
           }
         }}
       >

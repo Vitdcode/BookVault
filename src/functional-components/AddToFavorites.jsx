@@ -2,7 +2,7 @@ import { useOutletContext } from "react-router-dom";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { MdOutlineFavorite } from "react-icons/md";
 import toggleProperty from "./toggleProperty";
-import updateServerData from "../backend-json/updateServerData";
+import updateBookData from "../backend-json/updateServerData";
 
 const AddToFavorites = ({ bookData }) => {
   const { books, setBooks } = useOutletContext();
@@ -19,7 +19,7 @@ const AddToFavorites = ({ bookData }) => {
       e
     );
 
-    updateServerData(updatedBooks); // Call with the updated books
+    updateBookData(updatedBooks); // Call with the updated books
   };
 
   const icons = {

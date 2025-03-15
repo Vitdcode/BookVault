@@ -1,4 +1,4 @@
-const updateServerData = (books) => {
+const updateBookData = (books) => {
   if (books.length === 0) return;
   try {
     fetch("/api", {
@@ -27,4 +27,4 @@ export const updateTheme = (theme) => {
   }
 };
 
-export default updateServerData;
+export default updateBookData;

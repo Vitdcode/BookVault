@@ -25,13 +25,11 @@ const server = http.createServer(async (req, res) => {
     req.on("end", async () => {
       try {
         const newData = JSON.parse(body); // The data sent from frontend
-        newData;
         // Read existing data from the file
         let existingData = {};
         try {
           const fileContent = await readFile(filePath, "utf-8");
           existingData = JSON.parse(fileContent);
-          existingData;
         } catch (error) {
           console.error("📂 No existing file found or JSON is empty, creating new.", error);
         }

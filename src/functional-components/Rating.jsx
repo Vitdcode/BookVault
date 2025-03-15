@@ -1,5 +1,5 @@
 import { useOutletContext } from "react-router-dom";
-import updateServerData from "../backend-json/updateServerData";
+import updateBookData from "../backend-json/updateServerData";
 
 const Rating = ({ completedBook }) => {
   completedBook;
@@ -16,7 +16,7 @@ const Rating = ({ completedBook }) => {
       book.id === completedBook.id ? { ...book, rating: e.target.value } : book
     );
     setBooks(updatedRating);
-    updateServerData(updatedRating);
+    updateBookData(updatedRating);
   };
 
   return (
