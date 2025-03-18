@@ -29,7 +29,7 @@ const BookPage = () => {
 
   return (
     <div className="flex flex-col justify-center items-center m-20">
-      <div className="flex flex-col md:flex-row items-center gap-8 ">
+      <div className="flex flex-col items-center md:flex-row md:items-start gap-8">
         {/* Book Cover and Title Section */}
         <div className="flex flex-col  gap-4">
           <div className="bg-base-200 p-1 rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105 duration-300">
