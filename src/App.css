@@ -8,12 +8,12 @@
 }
 
 .active {
-  width: fit-content;
+  padding: 12px;
   border-radius: 50px;
   background-color: rgba(173, 48, 48, 0.822);
 }
 
 .not-active {
-  width: fit-content;
+  /*   padding: 12px; */
   border-radius: 50px;
 }

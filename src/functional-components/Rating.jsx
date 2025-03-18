@@ -8,10 +8,6 @@ const Rating = ({ completedBook }) => {
   const handleRatingChange = (e) => {
     let updatedRating;
 
-    /*     setBooks((prev) =>
-      prev.map((b) => (b.id === completedBook.id ? { ...b, rating: e.target.value } : b))
-    ); */
-
     updatedRating = books.map((book) =>
       book.id === completedBook.id ? { ...book, rating: e.target.value } : book
     );

@@ -45,8 +45,8 @@ const Home = () => {
 
   return (
     <>
-      <form onSubmit={(e) => handleFetch(e)} className="mt-10 max-w-4xl mx-auto">
-        <h2 className="text-xl font-semibold mb-4">Book Search</h2>
+      <form onSubmit={(e) => handleFetch(e)} className="mt-10 max-w-4xl mx-auto sm:mt-30">
+        <h2 className="text-xl text-center font-semibold mb-4">Book Search</h2>
 
         <div className="relative flex items-center">
           <input

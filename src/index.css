@@ -1,8 +1,12 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 @plugin "daisyui" {
   themes: all;
 }
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+body {
+  overflow-x: hidden;
+}
 
 #root {
   font-family: "Poppins", sans-serif;

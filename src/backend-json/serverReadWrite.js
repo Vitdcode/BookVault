@@ -1,17 +1,10 @@
 import http from "http";
 import { readFile, writeFile } from "fs/promises";
-import fs from "fs";
-import path from "path";
-import url from "url";
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
-const filePath = path.join(__dirname, "books.json");
-const distPath = path.join(__dirname, "dist"); // Path to your frontend files
+const filePath = "books.json";
 
 const server = http.createServer(async (req, res) => {
-  const parsedUrl = url.parse(req.url);
-
-  if (req.method === "GET" && parsedUrl.pathname === "/api/books") {
+  if (req.method === "GET") {
     // 📌 Handle JSON reading
     try {
       const data = await readFile(filePath, "utf-8");
@@ -22,8 +15,8 @@ const server = http.createServer(async (req, res) => {
       res.end("Server Error: Could not read file.");
       console.error("Error reading file:", err);
     }
-  } else if (req.method === "POST" && parsedUrl.pathname === "/api/books") {
-    // 📌 Handle JSON writing
+  } else if (req.method === "POST") {
+    // 📌 Handle JSON writing (Merging new data)
     let body = "";
     req.on("data", (chunk) => {
       body += chunk;
@@ -31,16 +24,20 @@ const server = http.createServer(async (req, res) => {
 
     req.on("end", async () => {
       try {
-        const newData = JSON.parse(body);
+        const newData = JSON.parse(body); // The data sent from frontend
+        // Read existing data from the file
         let existingData = {};
         try {
           const fileContent = await readFile(filePath, "utf-8");
           existingData = JSON.parse(fileContent);
         } catch (error) {
-          console.error("📂 No existing file found, creating new.", error);
+          console.error("📂 No existing file found or JSON is empty, creating new.", error);
         }
 
+        // Merge new data with existing data
         const updatedData = { ...existingData, ...newData };
+
+        // Write back the merged data
         await writeFile(filePath, JSON.stringify(updatedData, null, 2), "utf-8");
 
         res.writeHead(200, { "Content-Type": "text/plain" });
@@ -52,28 +49,9 @@ const server = http.createServer(async (req, res) => {
       }
     });
   } else {
-    // 📌 Serve Static Frontend Files
-    let filePath = path.join(distPath, parsedUrl.pathname);
-    if (parsedUrl.pathname === "/") filePath = path.join(distPath, "index.html");
-
-    fs.readFile(filePath, (err, data) => {
-      if (err) {
-        res.writeHead(404, { "Content-Type": "text/plain" });
-        res.end("404 Not Found");
-      } else {
-        let ext = path.extname(filePath);
-        let contentType = "text/html";
-        if (ext === ".css") contentType = "text/css";
-        else if (ext === ".js") contentType = "application/javascript";
-        else if (ext === ".json") contentType = "application/json";
-
-        res.writeHead(200, { "Content-Type": contentType });
-        res.end(data);
-      }
-    });
+    res.writeHead(405, { "Content-Type": "text/plain" });
+    res.end("❌ Method Not Allowed");
   }
 });
 
-server.listen(8080, "0.0.0.0", () =>
-  console.log("🚀 Server running at http://<your-raspberry-ip>:8080")
-);
+server.listen(8080, () => console.log("🚀 Server running on http://localhost:8080"));

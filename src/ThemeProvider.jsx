@@ -47,7 +47,7 @@ const ThemeProvider = ({ savedTheme }) => {
   ];
 
   return (
-    <div className="dropdown mb-72 absolute left-10 top-5">
+    <div className="dropdown mb-72 absolute left-3 top-3">
       <div tabIndex={0} role="button" className="btn m-1">
         Theme
         <svg

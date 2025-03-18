@@ -1,25 +1,10 @@
-import { useState } from "react";
 import { LuPen } from "react-icons/lu";
 import { useOutletContext } from "react-router-dom";
 import TextEditor from "../Tiptap/Tiptap";
 import updateBookData from "../backend-json/updateServerData";
 
-const WriteReview = ({ bookData }) => {
-  const { books, setBooks } = useOutletContext();
-  const review = books.find((book) => book.id === bookData.id)?.review || "";
-  const [editReview, setEditReview] = useState(false);
-
-  const handleReviewChange = (htmlContent) => {
-    const bookExists = books.find((book) => book.id === bookData.id);
-
-    if (!bookExists) {
-      setBooks([...books, bookData]);
-    } else {
-      setBooks((prev) =>
-        prev.map((book) => (book.id === bookData.id ? { ...book, review: htmlContent } : book))
-      );
-    }
-  };
+const WriteReview = ({ editReview, setEditReview }) => {
+  const { books } = useOutletContext();
 
   return (
     <div>
@@ -36,8 +21,27 @@ const WriteReview = ({ bookData }) => {
         <LuPen size={20} />
         {editReview ? "Save" : "Write a review"}
       </button>
+    </div>
+  );
+};
+
+export const Review = ({ editReview, review, bookData }) => {
+  const { books, setBooks } = useOutletContext();
+  const handleReviewChange = (htmlContent) => {
+    const bookExists = books.find((book) => book.id === bookData.id);
+
+    if (!bookExists) {
+      setBooks([...books, bookData]);
+    } else {
+      setBooks((prev) =>
+        prev.map((book) => (book.id === bookData.id ? { ...book, review: htmlContent } : book))
+      );
+    }
+  };
+  return (
+    <div>
       {editReview ? (
-        <div className="absolute top-20 left-0 w-[100%]">
+        <div className=" top-20 left-0 w-[100%]">
           <h2 className="mb-4 text-xl font-bold">Review</h2>
           <TextEditor
             content={review}
@@ -45,7 +49,7 @@ const WriteReview = ({ bookData }) => {
           />
         </div>
       ) : (
-        <div className="absolute top-20 left-0 bg-base-200 shadow-lg p-4 rounded-xl w-[100%]">
+        <div className=" top-20 left-0 bg-base-200  shadow-lg p-4 rounded-xl w-[100%]">
           <h2 className="mb-4 text-xl font-bold">Review</h2>
           {bookData.review ? (
             <div dangerouslySetInnerHTML={{ __html: bookData.review }} />

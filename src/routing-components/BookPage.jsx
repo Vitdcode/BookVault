@@ -6,15 +6,16 @@ import { RxAvatar } from "react-icons/rx";
 import { GoBook } from "react-icons/go";
 import Rating from "../functional-components/Rating";
 import { FaRegCalendarAlt } from "react-icons/fa";
-import WriteReview from "../functional-components/WriteReview";
+import WriteReview, { Review } from "../functional-components/WriteReview";
 import { useState } from "react";
-import TextEditor from "../Tiptap/Tiptap";
 
 const BookPage = () => {
   const { books, fetchedBooks } = useOutletContext();
   const { id } = useParams();
   const [showFullDescription, setShowFullDescription] = useState(false);
   const bookData = books.find((b) => b.id === id) || fetchedBooks.find((b) => b.id === id);
+  const review = books.find((book) => book.id === bookData.id)?.review || "";
+  const [editReview, setEditReview] = useState(false);
   if (!bookData) return;
   // depending on the route, the bookData will be either from the books state or the fetchedBooks state
 
@@ -27,10 +28,10 @@ const BookPage = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center m-10 max-w-4xl mx-auto mt-30">
-      <div className="flex flex-col md:flex-row items-center md:items-start gap-8 w-full">
+    <div className="flex flex-col justify-center items-center m-20">
+      <div className="flex flex-col md:flex-row items-center gap-8 ">
         {/* Book Cover and Title Section */}
-        <div className="flex flex-col items-center md:items-start gap-4 relative w-fit">
+        <div className="flex flex-col  gap-4">
           <div className="bg-base-200 p-1 rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105 duration-300">
             <img
               src={bookData.coverUrl}
@@ -42,10 +43,10 @@ const BookPage = () => {
         </div>
 
         {/* Book Details Section */}
-        <div className="flex flex-col flex-1 gap-6">
+        <div className="flex flex-col flex-1 gap-6 ">
           {/* Author and Publication Info */}
-          <div className="flex flex-col gap-2 p-5 rounded-xl bg-base-100 shadow-md border border-gray-100">
-            <div className="space-y-1">
+          <div className="flex flex-col gap-2 p-5 rounded-xl bg-base-100 shadow-md border  border-gray-100">
+            <div className="">
               {bookData.authors.map((author, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <RxAvatar color="rgb(43, 127, 255)" size={20} />
@@ -89,7 +90,7 @@ const BookPage = () => {
           </div>
 
           {/* Book Actions */}
-          <div className="flex items-center justify-center gap-6 mt-10 w-full relative">
+          <div className="flex items-center justify-center gap-2 w-[80%] mx-auto">
             <div className="transition-transform hover:scale-105">
               <CompletedStatus bookData={bookData} />
             </div>
@@ -100,9 +101,10 @@ const BookPage = () => {
               <AddToBookmarks bookData={bookData} />
             </div>
             <div>
-              <WriteReview bookData={bookData} />
+              <WriteReview editReview={editReview} setEditReview={setEditReview} />
             </div>
           </div>
+          <Review editReview={editReview} review={review} bookData={bookData} />
         </div>
       </div>
     </div>

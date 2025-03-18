@@ -21,7 +21,7 @@ const CompletedStatus = ({ bookData }) => {
   };
 
   return (
-    <button className="btn btn-primary" onClick={(e) => handleReadingStatus(e)}>
+    <button className="btn btn-primary py-5" onClick={(e) => handleReadingStatus(e)}>
       {isCompleted ? (
         <>
           Book completed <FaRegCircleCheck size={20} />
