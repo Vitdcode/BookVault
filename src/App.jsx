@@ -7,10 +7,11 @@ import { FaRegBookmark } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
 import ThemeProvider from "./ThemeProvider";
 import { GoServer } from "react-icons/go";
+import { LuSearch } from "react-icons/lu";
 
 function App() {
   const links = [
-    { id: 1, path: "/home", icon: <AiOutlineHome size={30} /> },
+    { id: 1, path: "/search", icon: <LuSearch size={30} /> },
     { id: 2, path: "/favorites", icon: <MdFavoriteBorder size={30} /> },
     { id: 3, path: "/bookmarks", icon: <FaRegBookmark size={30} /> },
     { id: 4, path: "/completed", icon: <FaCheck size={30} /> },

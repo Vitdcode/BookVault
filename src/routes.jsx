@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import Home from "./routing-components/Home,";
 import Favorites from "./routing-components/Favorites";
 import BookPage from "./routing-components/BookPage";
 import Bookmarks from "./routing-components/Bookmarks";
 import CompletedBooks from "./routing-components/CompletedBooks";
+import Search from "./routing-components/Search";
 
 const router = createBrowserRouter([
   {
@@ -12,8 +12,8 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "home",
-        element: <Home />,
+        path: "search",
+        element: <Search />,
         index: true,
       },
       {

@@ -1,20 +1,21 @@
 {
   "books": [
     {
-      "id": "IHqGBByU0sgC",
-      "title": "Harry Potter und der Gefangene von Askaban",
-      "coverUrl": "http://books.google.com/books/content?id=IHqGBByU0sgC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-      "description": "Natürlich weiß Harry, dass das Zaubern in den Ferien strengstens verboten ist, und trotzdem befördert er seine schreckliche Tante mit einem Schwebezauber an die Decke. Die Konsequenz ist normalerweise: Schulverweis! Nicht so bei Harry; im Gegenteil, man behandelt ihn wie in rohes Ei. Hat es etwa damit zu tun, dass ein gefürchteter Verbrecher in die Schule eingedrungen ist und es auf Harry abgesehen hat? Mit seinen Freunden Ron und Hermine versucht Harry ein Geflecht aus Verrat, Rache, Feigheit und Verleumdung aufzudröseln und stößt dabei auf Dinge, die ihn fast an seinem Verstand zweifeln lassen.",
+      "id": "XtekEncdTZcC",
+      "title": "Harry Potter und der Stein der Weisen",
+      "coverUrl": "http://books.google.com/books/content?id=XtekEncdTZcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "description": "Eigentlich hatte Harry geglaubt, er sei ein ganz normaler Junge. Zumindest bis zu seinem elften Geburtstag. Da erfährt er, dass er sich an der Schule für Hexerei und Zauberei einfinden soll. Und warum? Weil Harry ein Zauberer ist. Und so wird für Harry das erste Jahr in der Schule das spannendste, aufregendste und lustigste in seinem Leben. Er stürzt von einem Abenteuer in die nächste ungeheuerliche Geschichte, muss gegen Bestien, Mitschüler und Fabelwesen kämpfen. Da ist es gut, dass er schon Freunde gefunden hat, die ihm im Kampf gegen die dunklen Mächte zur Seite stehen.",
       "authors": [
         "J.K. Rowling"
       ],
-      "pageCount": 494,
+      "pageCount": 359,
       "publishedDate": "2015-12-08",
-      "rating": null,
-      "review": "<p>Great book</p><p></p><p>what I liked:</p><p></p><ul><li><p>great tips</p></li><li><p>great writing</p></li></ul>",
+      "rating": "5",
+      "review": "",
       "isFavorite": true,
-      "isBookmarked": true,
-      "isCompleted": false
+      "isBookmarked": false,
+      "isCompleted": true,
+      "yearCompleted": 2025
     },
     {
       "id": "fFCjDQAAQBAJ",
@@ -30,7 +31,26 @@
       "review": "",
       "isFavorite": true,
       "isBookmarked": false,
-      "isCompleted": false
+      "isCompleted": true,
+      "yearCompleted": 2025
+    },
+    {
+      "id": "p0iHDQAAQBAJ",
+      "title": "Konzentriert arbeiten",
+      "coverUrl": "http://books.google.com/books/content?id=p0iHDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "description": "Ständige Ablenkung ist heute das Hindernis Nummer eins für ein effizienteres Arbeiten. Sei es aufgrund lauter Großraumbüros, vieler paralleler Kommunikationskanäle, dauerhaftem Online-Sein oder der Schwierigkeit zu entscheiden, was davon nun unsere Aufmerksamkeit am meisten benötigt. Sich ganz auf eine Sache konzentrieren zu können wird damit zu einer raren, aber wertvollen und entscheidenden Fähigkeit im Arbeitsalltag. Cal Newport prägte hierfür den Begriff »Deep Work«, der einen Zustand völlig konzentrierter und fokussierter Arbeit beschreibt, und begann die Regeln und Denkweisen zu erforschen, die solch fokussiertes Arbeiten fördern. Mit seiner Deep-Work-Methode verrät Newport, wie man sich systematisch darauf trainiert, zu fokussieren, und wie wir unser Arbeitsleben nach den Regeln der Deep-Work-Methode neu organisieren können. Wer in unserer schnelllebigen und sprunghaften Zeit nicht untergehen will, für den ist dieses Konzept unerlässlich. Kurz gesagt: Die Entscheidung für Deep Work ist eine der besten, die man in einer Welt voller Ablenkungen treffen kann.",
+      "authors": [
+        "Cal Newport"
+      ],
+      "pageCount": 194,
+      "publishedDate": "2017-03-20",
+      "rating": null,
+      "review": "",
+      "isFavorite": false,
+      "isBookmarked": false,
+      "isCompleted": true,
+      "yearCompleted": 2025
     }
-  ]
+  ],
+  "theme": "dracula"
 }

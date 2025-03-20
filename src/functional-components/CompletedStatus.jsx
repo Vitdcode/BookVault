@@ -8,7 +8,7 @@ const CompletedStatus = ({ bookData }) => {
   const isCompleted = books.find((book) => book.id === bookData.id)?.isCompleted || false;
 
   const handleReadingStatus = (e) => {
-    const updatedBooks = toggleProperty(
+    let updatedBooks = toggleProperty(
       books,
       setBooks,
       bookData,
@@ -17,6 +17,20 @@ const CompletedStatus = ({ bookData }) => {
       "isBookmarked",
       e
     );
+
+    if (!isCompleted) {
+      const currentYear = new Date().getFullYear();
+      console.log(updatedBooks);
+
+      updatedBooks = updatedBooks.map((book) =>
+        book.id === bookData.id ? { ...book, yearCompleted: currentYear } : book
+      );
+    } else {
+      updatedBooks = updatedBooks.map((book) =>
+        book.id === bookData.id ? { ...book, yearCompleted: "" } : book
+      );
+    }
+
     updateBookData(updatedBooks);
   };
 

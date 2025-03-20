@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link, useOutletContext } from "react-router-dom";
 
-const Home = () => {
+const Search = () => {
   const [searchInput, setSearchInput] = useState("");
   const { fetchedBooks, setFetchedBooks } = useOutletContext();
 
@@ -36,6 +36,7 @@ const Home = () => {
               isFavorite: false,
               isBookmarked: false,
               isCompleted: false,
+              yearCompleted: "",
             },
           ]);
         });
@@ -104,4 +105,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Search;
