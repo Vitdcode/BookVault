@@ -10,7 +10,7 @@ const Rating = ({ completedBook }) => {
     updatedRating = books.map((book) =>
       book.id === completedBook.id ? { ...book, rating: e.target.value } : book
     );
-    console.log(completedBook);
+    completedBook;
     bookApis.updateProperty(completedBook.googleBooksId, "rating", e.target.value); //send data to sql server
     setBooks(updatedRating);
   };

@@ -25,6 +25,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await bookApis.fetchBooks();
+      data;
       if (data.theme) setTheme(data.theme);
       if (!data) return;
       setBooks(data);

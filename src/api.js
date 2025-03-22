@@ -3,7 +3,7 @@ const bookApis = {
   insertBook: async (book) => {
     if (Object.keys(book).length === 0) return;
     try {
-      const response = await fetch(`${bookApis.apiUrl}/api/addbook`, {
+      const response = await fetch(`${bookApis.apiUrl}/api/books/addbook`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(book),
@@ -24,7 +24,7 @@ const bookApis = {
       const response = await fetch(`${bookApis.apiUrl}/api/books/${id}`, {
         method: "DELETE",
       });
-
+      response;
       bookApis.errorResponse(response);
       return await response.json();
     } catch (error) {
@@ -49,12 +49,11 @@ const bookApis = {
 
   updateProperty: async (id, property, content = null) => {
     try {
-      const response = await fetch(`${bookApis.apiUrl}/api/book/updateProperty`, {
+      const response = await fetch(`${bookApis.apiUrl}/api/books/updateProperty`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: id, property: property, content }),
       });
-
       bookApis.errorResponse(response);
     } catch (error) {
       console.error("Error patching property", property, error);

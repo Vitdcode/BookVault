@@ -12,7 +12,7 @@ const WriteReview = ({ editReview, setEditReview, review, id }) => {
           let flag = !editReview;
           setEditReview(flag);
           if (!flag) {
-            console.log(id, review);
+            id, review;
             bookApis.updateProperty(id, "review", review);
           }
         }}
