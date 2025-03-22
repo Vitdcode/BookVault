@@ -13,7 +13,8 @@ const BookPage = () => {
   const { books, fetchedBooks } = useOutletContext();
   const { id } = useParams();
   const [showFullDescription, setShowFullDescription] = useState(false);
-  const bookData = books.find((b) => b.id === id) || fetchedBooks.find((b) => b.id === id);
+  const bookData =
+    books.find((b) => b.googleBooksId == id) || fetchedBooks.find((b) => b.googleBooksId === id);
   const review = books.find((book) => book.id === bookData.id)?.review || "";
   const [editReview, setEditReview] = useState(false);
   if (!bookData) return;
@@ -39,7 +40,7 @@ const BookPage = () => {
               className="h-64 sm:h-80 w-auto object-cover rounded-lg"
             />
           </div>
-          {bookData.isCompleted && <Rating completedBook={bookData} />}
+          {<Rating completedBook={bookData} />}
         </div>
 
         {/* Book Details Section */}
@@ -101,7 +102,12 @@ const BookPage = () => {
               <AddToBookmarks bookData={bookData} />
             </div>
             <div>
-              <WriteReview editReview={editReview} setEditReview={setEditReview} />
+              <WriteReview
+                editReview={editReview}
+                setEditReview={setEditReview}
+                review={review}
+                id={bookData.googleBooksId}
+              />
             </div>
           </div>
           <Review editReview={editReview} review={review} bookData={bookData} />

@@ -2,24 +2,13 @@ import { useOutletContext } from "react-router-dom";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { MdOutlineFavorite } from "react-icons/md";
 import toggleProperty from "./toggleProperty";
-import updateBookData from "../backend-json/updateServerData";
 
 const AddToFavorites = ({ bookData }) => {
   const { books, setBooks } = useOutletContext();
   const isFavorite = books.find((book) => book.id === bookData.id)?.isFavorite || false;
 
   const handleFavoritesToggle = (e) => {
-    const updatedBooks = toggleProperty(
-      books,
-      setBooks,
-      bookData,
-      "isFavorite",
-      "isCompleted",
-      "isBookmarked",
-      e
-    );
-
-    updateBookData(updatedBooks); // Call with the updated books
+    toggleProperty(books, setBooks, bookData, "isFavorite", "isCompleted", "isBookmarked", e);
   };
 
   const icons = {

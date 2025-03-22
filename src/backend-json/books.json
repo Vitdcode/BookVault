@@ -15,7 +15,7 @@
       "isFavorite": true,
       "isBookmarked": false,
       "isCompleted": true,
-      "yearCompleted": 2025
+      "yearCompleted": 2026
     },
     {
       "id": "fFCjDQAAQBAJ",
@@ -31,8 +31,8 @@
       "review": "",
       "isFavorite": true,
       "isBookmarked": false,
-      "isCompleted": true,
-      "yearCompleted": 2025
+      "isCompleted": false,
+      "yearCompleted": ""
     },
     {
       "id": "p0iHDQAAQBAJ",
@@ -47,10 +47,80 @@
       "rating": null,
       "review": "",
       "isFavorite": false,
+      "isBookmarked": true,
+      "isCompleted": true,
+      "yearCompleted": 2025
+    },
+    {
+      "id": "QzHDDwAAQBAJ",
+      "title": "Harry Potter und das verwunschene Kind. Teil eins und zwei (Bühnenfassung) (Harry Potter )",
+      "coverUrl": "http://books.google.com/books/content?id=QzHDDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "description": "Die achte Geschichte. Neunzehn Jahre später ... Es war nie leicht, Harry Potter zu sein – und jetzt, als Angestellter des Zaubereiministeriums, Ehemann und Vater von drei Schulkindern, ist sein Leben nicht gerade einfacher geworden. Während Harrys Vergangenheit ihn immer wieder einholt, kämpft sein Sohn Albus mit dem gewaltigen Vermächtnis seiner Familie, mit dem er nichts zu tun haben will. Als Vergangenheit und Gegenwart auf unheilvolle Weise miteinander verschmelzen, gelangen Harry und Albus zu einer bitteren Erkenntnis: Das Dunkle kommt oft von dort, wo man es am wenigsten vermutet. Das Skript zu »Harry Potter und das verwunschene Kind« erschien erstmals als »Special Rehearsal Edition Script«. Diese überarbeitete Bühnenfassung enthält die endgültigen Dialoge und Regieanweisungen des Londoner Theatererfolgs sowie exklusives Bonusmaterial. Dazu gehören ein Gespräch zwischen dem Regisseur John Tiffany und dem Autor Jack Thorne und nützliche Hintergrundinformationen: der Stammbaum der Familie Potter und eine Chronologie der Ereignisse, die vor Beginn von »Harry Potter und das verwunschene Kind« stattfanden.",
+      "authors": [
+        "J.K. Rowling",
+        "John Tiffany",
+        "Jack Thorne"
+      ],
+      "pageCount": 370,
+      "publishedDate": "2020-01-31",
+      "rating": "5",
+      "review": "",
+      "isFavorite": false,
+      "isBookmarked": true,
+      "isCompleted": true,
+      "yearCompleted": 2025
+    },
+    {
+      "id": "yy_PEAAAQBAJ",
+      "title": "Harry Potter - Gesamtausgabe (Harry Potter)",
+      "coverUrl": "http://books.google.com/books/content?id=yy_PEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+      "description": "Weltneuheit: alle »Harry Potter«-Bände ungekürzt in einem Buch! Bis zu seinem elften Geburtstag glaubt Harry, er sei ein ganz normaler Junge. Doch dann erfährt er, dass er sich an der Schule für Hexerei und Zauberei einfinden soll – denn er ist ein Zauberer! Die abenteuerliche Geschichte von Harry Potter und seinem Kampf gegen die dunklen Mächte hat Generationen an jungen und alten Leser*innen geprägt. Jetzt gibt es alle sieben Werke von J.K. Rowlings »Harry Potter« gesammelt in einem einzigen Band: »Harry Potter und der Stein der Weisen« (Band 1) »Harry Potter und die Kammer des Schreckens« (Band 2) »Harry Potter und der Gefangene von Askaban« (Band 3) »Harry Potter und der Feuerkelch« (Band 4) »Harry Potter und der Orden des Phönix« (Band 5) »Harry Potter und der Halbblutprinz« (Band 6) »Harry Potter und die Heiligtümer des Todes« (Band 7) Ein einzigartiges Buch, das sowohl die Herzen der Harry-Potter-Fans als auch die der Leser*innen höherschlagen lässt, die zum ersten Mal die magische Welt von Hogwarts betreten. ***Ausgestattet mit Goldprägung, Dünndruckpapier und Lesebändchen: ein echter Schatz für jede Harry-Potter-Sammlung***",
+      "authors": [
+        "J.K. Rowling"
+      ],
+      "pageCount": 3409,
+      "publishedDate": "2023-08-30",
+      "rating": null,
+      "review": "",
+      "isFavorite": false,
+      "isBookmarked": false,
+      "isCompleted": true,
+      "yearCompleted": 2025
+    },
+    {
+      "id": "l6wvEQAAQBAJ",
+      "title": "Harry Potter und unsere Biologie",
+      "coverUrl": "http://books.google.com/books/content?id=l6wvEQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "description": "Das Buch beschreibt anhand der sehr erfolgreichen Filmreihe Harry Potter, dass die Grundlage unserer Psyche, unseren Denkens unseren Zusammenlebens unsere Biologie ist. Es soll unterhaltend, entspannend sein und zum Nachdenken anregen.",
+      "authors": [
+        "Willi Bungartz"
+      ],
+      "pageCount": 242,
+      "publishedDate": "2024-11-07",
+      "rating": null,
+      "review": "",
+      "isFavorite": false,
+      "isBookmarked": false,
+      "isCompleted": true,
+      "yearCompleted": 2025
+    },
+    {
+      "id": "wdy6DwAAQBAJ",
+      "title": "Die 1%-Methode – Minimale Veränderung, maximale Wirkung",
+      "coverUrl": "http://books.google.com/books/content?id=wdy6DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+      "description": "Der Spiegel-Bestseller und BookTok-Bestseller Platz 1! Das Geheimnis des Erfolgs: »Die 1%-Methode«. Sie liefert das nötige Handwerkszeug, mit dem Sie jedes Ziel erreichen. James Clear, erfolgreicher Coach und einer der führenden Experten für Gewohnheitsbildung, zeigt praktische Strategien, mit denen Sie jeden Tag etwas besser werden bei dem, was Sie sich vornehmen. Seine Methode greift auf Erkenntnisse aus Biologie, Psychologie und Neurowissenschaften zurück und funktioniert in allen Lebensbereichen. Ganz egal, was Sie erreichen möchten – ob sportliche Höchstleistungen, berufliche Meilensteine oder persönliche Ziele wie mit dem Rauchen aufzuhören –, mit diesem Buch schaffen Sie es ganz sicher. Entdecke auch: Die 1%-Methode – Das Erfolgsjournal",
+      "authors": [
+        "James Clear"
+      ],
+      "pageCount": 187,
+      "publishedDate": "2020-04-21",
+      "rating": null,
+      "review": "",
+      "isFavorite": false,
       "isBookmarked": false,
       "isCompleted": true,
       "yearCompleted": 2025
     }
   ],
-  "theme": "dracula"
+  "theme": "light"
 }

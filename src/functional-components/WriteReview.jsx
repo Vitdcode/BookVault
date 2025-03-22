@@ -1,11 +1,9 @@
 import { LuPen } from "react-icons/lu";
 import { useOutletContext } from "react-router-dom";
 import TextEditor from "../Tiptap/Tiptap";
-import updateBookData from "../backend-json/updateServerData";
+import bookApis from "../api";
 
-const WriteReview = ({ editReview, setEditReview }) => {
-  const { books } = useOutletContext();
-
+const WriteReview = ({ editReview, setEditReview, review, id }) => {
   return (
     <div>
       <button
@@ -14,7 +12,8 @@ const WriteReview = ({ editReview, setEditReview }) => {
           let flag = !editReview;
           setEditReview(flag);
           if (!flag) {
-            updateBookData(books);
+            console.log(id, review);
+            bookApis.updateProperty(id, "review", review);
           }
         }}
       >

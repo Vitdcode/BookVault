@@ -1,7 +1,6 @@
 import { useOutletContext } from "react-router-dom";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import toggleProperty from "./toggleProperty";
-import updateBookData from "../backend-json/updateServerData";
 
 const AddToBookmarks = ({ bookData }) => {
   const { books, setBooks } = useOutletContext();
@@ -10,16 +9,7 @@ const AddToBookmarks = ({ bookData }) => {
   const isBookmarked = books.find((book) => book.id === bookData.id)?.isBookmarked || false;
 
   const handleBookmarksToggle = (e) => {
-    const updatedBooks = toggleProperty(
-      books,
-      setBooks,
-      bookData,
-      "isBookmarked",
-      "isCompleted",
-      "isFavorite",
-      e
-    );
-    updateBookData(updatedBooks);
+    toggleProperty(books, setBooks, bookData, "isBookmarked", "isCompleted", "isFavorite", e);
   };
 
   const icons = {

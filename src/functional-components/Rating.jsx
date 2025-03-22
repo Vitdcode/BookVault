@@ -1,8 +1,7 @@
 import { useOutletContext } from "react-router-dom";
-import updateBookData from "../backend-json/updateServerData";
+import bookApis from "../api";
 
 const Rating = ({ completedBook }) => {
-  completedBook;
   const { books, setBooks } = useOutletContext();
 
   const handleRatingChange = (e) => {
@@ -11,14 +10,18 @@ const Rating = ({ completedBook }) => {
     updatedRating = books.map((book) =>
       book.id === completedBook.id ? { ...book, rating: e.target.value } : book
     );
+    console.log(completedBook);
+    bookApis.updateProperty(completedBook.googleBooksId, "rating", e.target.value); //send data to sql server
     setBooks(updatedRating);
-    updateBookData(updatedRating);
   };
+  completedBook.isCompleted;
 
   return (
     <>
       <div
-        className="rating flex justify-center w-[100%] hover:bg-base-200 p-2 rounded-lg"
+        className={`rating flex justify-center w-[100%] hover:bg-base-200 p-2 rounded-lg transition-opacity duration-300 ease-in-out ${
+          completedBook.isCompleted ? "opacity-100" : "opacity-0"
+        }`}
         onClick={handleRatingChange}
       >
         <input

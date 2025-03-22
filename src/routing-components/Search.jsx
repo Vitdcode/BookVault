@@ -16,6 +16,7 @@ const Search = () => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
+        data;
         data.items.forEach((book) => {
           const bookData = book.volumeInfo;
           const coverUrl = bookData.imageLinks?.thumbnail;
@@ -24,7 +25,7 @@ const Search = () => {
           setFetchedBooks((prevBooks) => [
             ...prevBooks,
             {
-              id: book.id,
+              googleBooksId: book.id,
               title: bookData.title,
               coverUrl: coverUrl,
               description: bookData.description,
@@ -43,7 +44,6 @@ const Search = () => {
       })
       .catch((error) => console.error("Error:", error));
   };
-
   return (
     <>
       <form onSubmit={(e) => handleFetch(e)} className="mt-10 max-w-4xl mx-auto sm:mt-30">
@@ -88,7 +88,7 @@ const Search = () => {
         {fetchedBooks &&
           fetchedBooks.map((book) => (
             <Link
-              to={`/book/${book.id}`}
+              to={`/book/${book.googleBooksId}`}
               key={book.id}
               className="flex flex-col items-center bg-base-100 rounded-xl shadow-lg 
             transition-transform transform scale-100 hover:scale-105 duration-300 ease-in-out 

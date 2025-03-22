@@ -1,7 +1,8 @@
 import { useOutletContext } from "react-router-dom";
 import { FaRegCircleCheck } from "react-icons/fa6";
+import { FaCircleCheck } from "react-icons/fa6";
 import toggleProperty from "./toggleProperty";
-import updateBookData from "../backend-json/updateServerData";
+import { motion } from "framer-motion";
 
 const CompletedStatus = ({ bookData }) => {
   const { books, setBooks } = useOutletContext();
@@ -20,7 +21,7 @@ const CompletedStatus = ({ bookData }) => {
 
     if (!isCompleted) {
       const currentYear = new Date().getFullYear();
-      console.log(updatedBooks);
+      updatedBooks;
 
       updatedBooks = updatedBooks.map((book) =>
         book.id === bookData.id ? { ...book, yearCompleted: currentYear } : book
@@ -30,15 +31,21 @@ const CompletedStatus = ({ bookData }) => {
         book.id === bookData.id ? { ...book, yearCompleted: "" } : book
       );
     }
-
-    updateBookData(updatedBooks);
   };
 
   return (
-    <button className="btn btn-primary py-5" onClick={(e) => handleReadingStatus(e)}>
+    <button className="btn btn-primary py-5 relative" onClick={(e) => handleReadingStatus(e)}>
       {isCompleted ? (
         <>
-          Book completed <FaRegCircleCheck size={20} />
+          Book completed{" "}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="absolute top-[-20%] left-[-5%]"
+          >
+            <FaCircleCheck size={25} color="rgb(110, 198, 154)" />
+          </motion.div>
         </>
       ) : (
         "Mark completed"

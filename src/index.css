@@ -29,3 +29,11 @@ mark {
   border-radius: 2px;
   padding: 2px;
 }
+
+select:focus {
+  outline: none;
+}
+
+.is-completed {
+  opacity: 1;
+}
