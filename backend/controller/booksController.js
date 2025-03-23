@@ -50,6 +50,7 @@ export const deleteBook = async (req, res) => {
 export const changeBookData = async (req, res) => {
   try {
     const { id, property, content = null } = req.body;
+    property;
     const propSnakeCase = camelToSnake(property);
     let updateResult;
     if (!content) {
@@ -91,7 +92,7 @@ export const addBookToDb = async (req, res) => {
       isCompleted,
       yearCompleted,
     } = req.body;
-
+    title;
     const newBook = await pool.query(
       "INSERT INTO books (google_books_id, title, cover_url, description, authors, page_count, published_date, rating, review, is_favorite, is_bookmarked, is_completed, year_completed) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *",
       [

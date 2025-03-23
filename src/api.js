@@ -3,12 +3,12 @@ const bookApis = {
   insertBook: async (book) => {
     if (Object.keys(book).length === 0) return;
     try {
-      const response = await fetch(`${bookApis.apiUrl}/api/books/addbook`, {
+      const response = await fetch(`${bookApis.apiUrl}/books/addbook`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(book),
       });
-
+      response;
       bookApis.errorResponse(response);
       return await response.json();
     } catch (error) {
@@ -21,7 +21,7 @@ const bookApis = {
     if (!id) return;
 
     try {
-      const response = await fetch(`${bookApis.apiUrl}/api/books/${id}`, {
+      const response = await fetch(`${bookApis.apiUrl}/books/${id}`, {
         method: "DELETE",
       });
       response;
@@ -36,10 +36,10 @@ const bookApis = {
 
   fetchBooks: async () => {
     try {
-      const response = await fetch(`${bookApis.apiUrl}/api/books`);
+      const response = await fetch(`${bookApis.apiUrl}/books`);
 
       bookApis.errorResponse(response);
-
+      response;
       return await response.json(); // Return the list of books
     } catch (error) {
       console.error("Error fetching books:", error.message);
@@ -49,7 +49,7 @@ const bookApis = {
 
   updateProperty: async (id, property, content = null) => {
     try {
-      const response = await fetch(`${bookApis.apiUrl}/api/books/updateProperty`, {
+      const response = await fetch(`${bookApis.apiUrl}/books/updateProperty`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id: id, property: property, content }),

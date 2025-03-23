@@ -17,6 +17,7 @@ const BookPage = () => {
     books.find((b) => b.googleBooksId == id) || fetchedBooks.find((b) => b.googleBooksId === id);
   const review = books.find((book) => book.id === bookData.id)?.review || "";
   const [editReview, setEditReview] = useState(false);
+  bookData;
   if (!bookData) return;
   // depending on the route, the bookData will be either from the books state or the fetchedBooks state
 
