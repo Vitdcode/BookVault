@@ -19,5 +19,5 @@ app.use("/api/theme", themeRouter);
 // Start server
 const port = process.env.NODE_PORT || 5000;
 app.listen(port, () => {
-  `Server running on port ${port}`;
+  console.log(`Server running on port ${port}`);
 });

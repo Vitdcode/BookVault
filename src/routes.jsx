@@ -5,6 +5,7 @@ import BookPage from "./routing-components/BookPage";
 import Bookmarks from "./routing-components/Bookmarks";
 import CompletedBooks from "./routing-components/CompletedBooks";
 import Search from "./routing-components/Search";
+import Statistics from "./routing-components/Statistics";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "completed",
         element: <CompletedBooks />,
+      },
+      {
+        path: "statistics",
+        element: <Statistics />,
       },
     ],
   },

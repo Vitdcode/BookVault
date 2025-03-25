@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Link, NavLink, Outlet } from "react-router-dom";
-import { AiOutlineHome } from "react-icons/ai";
+
+/* icons */
 import { MdFavoriteBorder } from "react-icons/md";
 import { FaRegBookmark } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
-import ThemeProvider from "./ThemeProvider";
-import { GoServer } from "react-icons/go";
+import { IoStatsChart } from "react-icons/io5";
 import { LuSearch } from "react-icons/lu";
+import ThemeProvider from "./ThemeProvider";
+
 import bookApis, { themeApis } from "./api";
 
 function App() {
@@ -16,6 +18,7 @@ function App() {
     { id: 2, path: "/favorites", icon: <MdFavoriteBorder size={30} /> },
     { id: 3, path: "/bookmarks", icon: <FaRegBookmark size={30} /> },
     { id: 4, path: "/completed", icon: <FaCheck size={30} /> },
+    { id: 5, path: "/statistics", icon: <IoStatsChart size={30} /> },
   ];
 
   const [fetchedBooks, setFetchedBooks] = useState([]);
@@ -29,6 +32,7 @@ function App() {
       const theme = await themeApis.getTheme();
       theme;
       if (theme) setTheme(theme);
+      console.log(data);
       if (!data) return;
       setBooks(data);
     };

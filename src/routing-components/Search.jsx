@@ -21,7 +21,6 @@ const Search = () => {
           const bookData = book.volumeInfo;
           const coverUrl = bookData.imageLinks?.thumbnail;
           if (!coverUrl || !bookData.description) return;
-
           setFetchedBooks((prevBooks) => [
             ...prevBooks,
             {

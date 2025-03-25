@@ -1,22 +1,13 @@
 import { Link, useOutletContext } from "react-router-dom";
 import Rating from "../functional-components/Rating";
 import { useState } from "react";
+import groupBooks from "./groupBooks";
 
 const GenericDesign = ({ renderIcon, title, searchTerm }) => {
   const [completedBooksYear, setCompletedBooksYear] = useState(new Date().getFullYear());
   const { books } = useOutletContext();
-
+  const groupedBooks = groupBooks(books);
   const filteredArray = books.filter((book) => book[searchTerm]);
-  const groupedBooks = books.reduce((acc, book) => {
-    const year = book.yearCompleted;
-
-    if (!acc[year] && year !== "") {
-      acc[year] = [];
-    }
-    acc[year]?.push(book);
-
-    return acc; // Always return the accumulator
-  }, {});
 
   return (
     <div className=" mx-auto px-4 py-8 mt-30">
