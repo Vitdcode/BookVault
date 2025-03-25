@@ -1,1 +1,1 @@
-App for Bookmanagement. Written in React using Vite . Backend: Nodejs, database: Postgresql
+App for Book management. Written in React using Vite . Backend: Nodejs, database: Postgresql
