@@ -62,9 +62,6 @@ export const changeBookData = async (req, res) => {
         [id]
       );
     } else {
-      /*  (id);
-      (content);
-      (propSnakeCase); */
       updateResult = await pool.query(
         `UPDATE books SET ${propSnakeCase} = $2 WHERE google_books_id = $1`,
         [id, content]
