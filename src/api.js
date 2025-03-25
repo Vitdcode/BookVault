@@ -37,9 +37,7 @@ const bookApis = {
   fetchBooks: async () => {
     try {
       const response = await fetch(`${bookApis.apiUrl}/books`);
-
       bookApis.errorResponse(response);
-      response;
       return await response.json(); // Return the list of books
     } catch (error) {
       console.error("Error fetching books:", error.message);
@@ -57,6 +55,42 @@ const bookApis = {
       bookApis.errorResponse(response);
     } catch (error) {
       console.error("Error patching property", property, error);
+    }
+  },
+
+  errorResponse: async (response) => {
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || `HTTP error! Status: ${response.status}`);
+    }
+  },
+};
+
+export const themeApis = {
+  apiUrl: import.meta.env.VITE_API_URL,
+
+  getTheme: async () => {
+    try {
+      const response = await fetch(`${themeApis.apiUrl}/theme`);
+      themeApis.errorResponse(response);
+      return await response.json();
+    } catch (error) {
+      console.error("Error fetching Theme", error);
+      throw error;
+    }
+  },
+
+  changeTheme: async (themeName) => {
+    try {
+      const response = await fetch(`${themeApis.apiUrl}/theme/changeTheme`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ themeName: themeName }),
+      });
+      themeApis.errorResponse(response);
+    } catch (error) {
+      console.error("Error fetching Theme", error);
+      throw error;
     }
   },
 

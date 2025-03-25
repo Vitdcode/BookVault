@@ -8,7 +8,7 @@ import { FaCheck } from "react-icons/fa";
 import ThemeProvider from "./ThemeProvider";
 import { GoServer } from "react-icons/go";
 import { LuSearch } from "react-icons/lu";
-import bookApis from "./api";
+import bookApis, { themeApis } from "./api";
 
 function App() {
   const links = [
@@ -26,7 +26,9 @@ function App() {
     const fetchData = async () => {
       const data = await bookApis.fetchBooks();
       data;
-      if (data.theme) setTheme(data.theme);
+      const theme = await themeApis.getTheme();
+      theme;
+      if (theme) setTheme(theme);
       if (!data) return;
       setBooks(data);
     };
@@ -47,10 +49,10 @@ function App() {
         />
       </div>
       <div className="w-[90%] mx-auto flex justify-center items-center gap-5 sticky bottom-0 bg-base-200 rounded-2xl ">
-        {links.map((link) => (
+        {links.map((link, index) => (
           <NavLink
             to={link.path}
-            key={link.googleBooksId}
+            key={index}
             className={({ isActive }) =>
               `p-4 ${isActive ? "active" : "not-active hover:bg-base-300"}`
             }

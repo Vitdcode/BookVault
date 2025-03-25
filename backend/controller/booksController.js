@@ -54,11 +54,17 @@ export const changeBookData = async (req, res) => {
     const propSnakeCase = camelToSnake(property);
     let updateResult;
     if (!content) {
+      id;
+      content;
+      propSnakeCase;
       updateResult = await pool.query(
         `UPDATE books SET ${propSnakeCase} = NOT ${propSnakeCase} WHERE google_books_id = $1`,
         [id]
       );
     } else {
+      /*  (id);
+      (content);
+      (propSnakeCase); */
       updateResult = await pool.query(
         `UPDATE books SET ${propSnakeCase} = $2 WHERE google_books_id = $1`,
         [id, content]

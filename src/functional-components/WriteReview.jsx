@@ -27,13 +27,15 @@ const WriteReview = ({ editReview, setEditReview, review, id }) => {
 export const Review = ({ editReview, review, bookData }) => {
   const { books, setBooks } = useOutletContext();
   const handleReviewChange = (htmlContent) => {
-    const bookExists = books.find((book) => book.id === bookData.id);
+    const bookExists = books.find((book) => book.googleBooksId === bookData.googleBooksId);
 
     if (!bookExists) {
       setBooks([...books, bookData]);
     } else {
       setBooks((prev) =>
-        prev.map((book) => (book.id === bookData.id ? { ...book, review: htmlContent } : book))
+        prev.map((book) =>
+          book.googleBooksId === bookData.googleBooksId ? { ...book, review: htmlContent } : book
+        )
       );
     }
   };

@@ -1,4 +1,4 @@
-import { updateTheme } from "./backend-json/updateServerData";
+import { themeApis } from "./api";
 
 const ThemeProvider = ({ savedTheme }) => {
   savedTheme;
@@ -8,7 +8,7 @@ const ThemeProvider = ({ savedTheme }) => {
 
   const handleChangeTheme = (e) => {
     document.documentElement.setAttribute("data-theme", e.target.value);
-    updateTheme(e.target.value);
+    themeApis.changeTheme(e.target.value);
   };
 
   const themes = [

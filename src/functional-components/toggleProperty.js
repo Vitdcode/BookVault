@@ -10,7 +10,7 @@ const toggleProperty = (
   e
 ) => {
   e.preventDefault();
-  const booksExists = books.find((book) => book.id === bookData.id);
+  const booksExists = books.find((book) => book.googleBooksId === bookData.googleBooksId);
 
   let updatedBooks;
 
@@ -19,9 +19,13 @@ const toggleProperty = (
     (booksExists[propertyCheck1] || booksExists[propertyCheck2] || booksExists.review)
   ) {
     // Case 1: Toggle the property for an existing book
+
     updatedBooks = books.map((book) =>
-      book.id === booksExists.id ? { ...book, [activeProperty]: !book[activeProperty] } : book
+      book.googleBooksId === booksExists.googleBooksId
+        ? { ...book, [activeProperty]: !book[activeProperty] }
+        : book
     );
+
     bookApis.updateProperty(bookData.googleBooksId, activeProperty);
   } else if (
     booksExists &&

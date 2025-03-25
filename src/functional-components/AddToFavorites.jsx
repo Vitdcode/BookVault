@@ -5,7 +5,8 @@ import toggleProperty from "./toggleProperty";
 
 const AddToFavorites = ({ bookData }) => {
   const { books, setBooks } = useOutletContext();
-  const isFavorite = books.find((book) => book.id === bookData.id)?.isFavorite || false;
+  const isFavorite =
+    books.find((book) => book.googleBooksId === bookData.googleBooksId)?.isFavorite || false;
 
   const handleFavoritesToggle = (e) => {
     toggleProperty(books, setBooks, bookData, "isFavorite", "isCompleted", "isBookmarked", e);

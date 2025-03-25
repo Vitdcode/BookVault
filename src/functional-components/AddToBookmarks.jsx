@@ -6,7 +6,8 @@ const AddToBookmarks = ({ bookData }) => {
   const { books, setBooks } = useOutletContext();
 
   // Check if the book is in the persistent books state and bookmarked
-  const isBookmarked = books.find((book) => book.id === bookData.id)?.isBookmarked || false;
+  const isBookmarked =
+    books.find((book) => book.googleBooksId === bookData.googleBooksId)?.isBookmarked || false;
 
   const handleBookmarksToggle = (e) => {
     toggleProperty(books, setBooks, bookData, "isBookmarked", "isCompleted", "isFavorite", e);

@@ -31,7 +31,7 @@ const GenericDesign = ({ renderIcon, title, searchTerm }) => {
             {searchTerm != "isCompleted" ? (
               <div className="flex flex-wrap gap-10 justify-center">
                 {filteredArray.map((book) => (
-                  <BookDetails book={book} renderIcon={renderIcon} />
+                  <BookDetails key={book.googleBooksId} book={book} renderIcon={renderIcon} />
                 ))}
               </div>
             ) : (
@@ -42,12 +42,14 @@ const GenericDesign = ({ renderIcon, title, searchTerm }) => {
                   className="select "
                 >
                   <option disabled={true}>Pick a year</option>
-                  {Object.keys(groupedBooks).map((year) => year != "" && <option>{year}</option>)}
+                  {Object.keys(groupedBooks).map(
+                    (year) => year != "" && <option key={year}>{year}</option>
+                  )}
                 </select>
                 <div className="flex flex-col gap-10">
                   <div className="flex gap-20  flex-wrap justify-center">
                     {groupedBooks[completedBooksYear]?.map((book) => (
-                      <BookDetails book={book} renderIcon={renderIcon} />
+                      <BookDetails key={book.googleBooksId} book={book} renderIcon={renderIcon} />
                     ))}
                   </div>
                 </div>
@@ -61,11 +63,10 @@ const GenericDesign = ({ renderIcon, title, searchTerm }) => {
 };
 
 const BookDetails = ({ book, renderIcon }) => {
-  book;
   return (
     <Link
       to={`/book/${book.googleBooksId}`}
-      key={book.id}
+      key={book.googleBooksId}
       className="flex flex-col w-[350px] items-center justify-around rounded-xl shadow-lg overflow-hidden hover:-translate-y-1 transition-transform duration-200 hover:cursor-pointer"
     >
       <img src={book.coverUrl} alt="" className="p-2 shadow-lg bg-base-200 rounded-lg" />
