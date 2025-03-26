@@ -24,7 +24,7 @@ function App() {
   const [fetchedBooks, setFetchedBooks] = useState([]);
   const [books, setBooks] = useState([]);
   const [theme, setTheme] = useState("");
-  const [booksReadThisYear, setBooksReadThisYear] = useState(0);
+  const [booksRead, setBooksRead] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,8 +35,10 @@ function App() {
           themeApis.getTheme().catch(() => "light"),
         ]);
 
+        console.log(bookCount);
+
         if (allBooks) setBooks(allBooks);
-        if (bookCount) setBooksReadThisYear(bookCount.booksReadThisYear);
+        if (bookCount) setBooksRead(bookCount);
         if (theme) setTheme(theme);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -56,7 +58,7 @@ function App() {
             setFetchedBooks,
             books,
             setBooks,
-            booksReadThisYear,
+            booksRead,
           }}
         />
       </div>

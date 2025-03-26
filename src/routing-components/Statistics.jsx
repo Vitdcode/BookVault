@@ -4,7 +4,7 @@ import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recha
 import { FaBook } from "react-icons/fa";
 
 const Statistics = () => {
-  const { books, booksReadThisYear } = useOutletContext();
+  const { books, booksRead } = useOutletContext();
   const groupedBooks = groupBooks(books);
 
   const completedBooks = Object.entries(groupedBooks).map(([year, bookEntries]) => ({
@@ -21,7 +21,14 @@ const Statistics = () => {
         <FaBook color="rgb(136, 132, 216)" size={30} className="my-auto" />
         <div className="flex flex-col ">
           <span className="grid grid-cols-1 text-lg ">Read books this year</span>
-          <span className="font-bold text-lg">{booksReadThisYear}</span>
+          <span className="font-bold text-lg">{booksRead.booksReadThisYear}</span>
+        </div>
+      </div>
+      <div className=" mx-auto flex items-center gap-5 bg-base-200 p-4 rounded-lg max-w-[200px] ">
+        <FaBook color="rgb(136, 132, 216)" size={30} className="my-auto" />
+        <div className="flex flex-col ">
+          <span className="grid grid-cols-1 text-lg ">Read books total</span>
+          <span className="font-bold text-lg">{booksRead.booksReadAllYear}</span>
         </div>
       </div>
       <BooksReadPerYearChart completedBooks={completedBooks} />
