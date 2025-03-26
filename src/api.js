@@ -58,6 +58,17 @@ const bookApis = {
     }
   },
 
+  countFinishedBooksCurrentYear: async () => {
+    try {
+      const response = await fetch(`${bookApis.apiUrl}/books/countFinishedBooksCurrentYear`);
+      bookApis.errorResponse(response);
+      return await response.json();
+    } catch (error) {
+      console.error("Error fetching count:", error.message);
+      throw error;
+    }
+  },
+
   errorResponse: async (response) => {
     if (!response.ok) {
       const errorData = await response.json();

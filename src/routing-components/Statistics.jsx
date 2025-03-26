@@ -1,33 +1,29 @@
 import { useOutletContext } from "react-router-dom";
 import groupBooks from "../reusable-components/groupBooks";
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { FaBook } from "react-icons/fa";
 
 const Statistics = () => {
-  const { books } = useOutletContext();
+  const { books, booksReadThisYear } = useOutletContext();
   const groupedBooks = groupBooks(books);
-
-  /*   const booksReadYears = () => {
-    let booksCompleted = [];
-    for (const key in groupedBooks) {
-      let booksCompletedThisYear = {};
-      if (!booksCompletedThisYear[key]) {
-        booksCompletedThisYear[key] = groupedBooks[key].length;
-        booksCompleted.push(booksCompletedThisYear);
-      }
-    }
-    return booksCompleted;
-  }; */
 
   const completedBooks = Object.entries(groupedBooks).map(([year, bookEntries]) => ({
     year: year,
     booksRead: bookEntries.length,
   }));
-  console.log(completedBooks);
+
   if (books.length === 0) return;
+
   return (
-    <div className=" mx-auto px-4 py-8 mt-30">
+    <div className="flex flex-col gap-10 px-4 py-8 mt-30">
       <h1 className="text-3xl font-bold mb-8 text-center">Statistics</h1>
-      <span>Completed books: </span>
+      <div className=" mx-auto flex items-center gap-5 bg-base-200 p-4 rounded-lg max-w-[200px] ">
+        <FaBook color="rgb(136, 132, 216)" size={30} className="my-auto" />
+        <div className="flex flex-col ">
+          <span className="grid grid-cols-1 text-lg ">Read books this year</span>
+          <span className="font-bold text-lg">{booksReadThisYear}</span>
+        </div>
+      </div>
       <BooksReadPerYearChart completedBooks={completedBooks} />
     </div>
   );

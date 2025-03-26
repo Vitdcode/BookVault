@@ -24,21 +24,28 @@ function App() {
   const [fetchedBooks, setFetchedBooks] = useState([]);
   const [books, setBooks] = useState([]);
   const [theme, setTheme] = useState("");
+  const [booksReadThisYear, setBooksReadThisYear] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await bookApis.fetchBooks();
-      data;
-      const theme = await themeApis.getTheme();
-      theme;
-      if (theme) setTheme(theme);
-      console.log(data);
-      if (!data) return;
-      setBooks(data);
+      try {
+        const [allBooks, bookCount, theme] = await Promise.all([
+          bookApis.fetchBooks().catch(() => []),
+          bookApis.countFinishedBooksCurrentYear().catch(() => ({ booksReadThisYear: 0 })),
+          themeApis.getTheme().catch(() => "light"),
+        ]);
+
+        if (allBooks) setBooks(allBooks);
+        if (bookCount) setBooksReadThisYear(bookCount.booksReadThisYear);
+        if (theme) setTheme(theme);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
 
     fetchData();
   }, []);
+
   return (
     <div className="flex flex-col min-h-screen w-screen">
       <div className="flex flex-col items-center flex-1">
@@ -49,6 +56,7 @@ function App() {
             setFetchedBooks,
             books,
             setBooks,
+            booksReadThisYear,
           }}
         />
       </div>

@@ -31,6 +31,20 @@ export const getAllBooks = async (req, res) => {
   }
 };
 
+export const getCountFinishedBooksCurrentYear = async (req, res) => {
+  try {
+    const { rows } = await pool.query(
+      "SELECT COUNT(*) FROM books WHERE year_completed::INTEGER = EXTRACT(YEAR FROM CURRENT_DATE)"
+    );
+    const bookCount = { booksReadThisYear: rows[0].count };
+    console.log(rows);
+    res.json(bookCount);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+};
+
 export const deleteBook = async (req, res) => {
   try {
     const { id } = req.params;
