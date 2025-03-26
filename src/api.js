@@ -58,9 +58,9 @@ const bookApis = {
     }
   },
 
-  countFinishedBooksCurrentYear: async () => {
+  getStatisticsData: async () => {
     try {
-      const response = await fetch(`${bookApis.apiUrl}/books/countFinishedBooksCurrentYear`);
+      const response = await fetch(`${bookApis.apiUrl}/books/statisticsData`);
       bookApis.errorResponse(response);
       return await response.json();
     } catch (error) {

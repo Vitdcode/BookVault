@@ -31,11 +31,9 @@ function App() {
       try {
         const [allBooks, bookCount, theme] = await Promise.all([
           bookApis.fetchBooks().catch(() => []),
-          bookApis.countFinishedBooksCurrentYear().catch(() => ({ booksReadThisYear: 0 })),
+          bookApis.getStatisticsData().catch(() => ({ booksReadThisYear: 0 })),
           themeApis.getTheme().catch(() => "light"),
         ]);
-
-        console.log(bookCount);
 
         if (allBooks) setBooks(allBooks);
         if (bookCount) setBooksRead(bookCount);

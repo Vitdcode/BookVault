@@ -47,6 +47,7 @@ const BookPage = () => {
         {/* Book Details Section */}
         <div className="flex flex-col flex-1 gap-6 ">
           {/* Author and Publication Info */}
+          <h2 className="font-bold text-2xl text-center md:text-left">{bookData.title}</h2>
           <div className="flex flex-col gap-2 p-5 rounded-xl bg-base-100 shadow-md border  border-gray-100">
             <div className="">
               {bookData.authors.map((author, index) => (
@@ -71,25 +72,6 @@ const BookPage = () => {
               </p>
             </div>
           </div>
-          <h2 className="font-bold text-2xl text-center md:text-left">{bookData.title}</h2>
-          {/* Book Description */}
-          <div className="bg-base-100 p-5 rounded-xl shadow-md border border-gray-100">
-            <h3 className="font-semibold text-lg mb-3">Description</h3>
-            <div
-              className="overflow-hidden transition-all duration-300 ease-in-out"
-              style={{
-                maxHeight: showFullDescription ? "600px" : "100px", // Adjust max height as needed
-              }}
-            >
-              <p className="leading-relaxed">{bookData.description}</p>
-            </div>
-            <button
-              onClick={() => setShowFullDescription(!showFullDescription)}
-              className="text-blue-500 mt-2 cursor-pointer hover:underline"
-            >
-              {showFullDescription ? "Show Less" : "Read More"}
-            </button>
-          </div>
 
           {/* Book Actions */}
           <div className="flex items-center justify-center gap-2 w-[80%] mx-auto">
@@ -111,6 +93,25 @@ const BookPage = () => {
               />
             </div>
           </div>
+          {/* Book Description */}
+          <div className="bg-base-100 p-5 rounded-xl shadow-md border border-gray-100">
+            <h3 className="font-semibold text-lg mb-3">Description</h3>
+            <div
+              className="overflow-hidden transition-all duration-300 ease-in-out"
+              style={{
+                maxHeight: showFullDescription ? "600px" : "100px", // Adjust max height as needed
+              }}
+            >
+              <p className="leading-relaxed">{bookData.description}</p>
+            </div>
+            <button
+              onClick={() => setShowFullDescription(!showFullDescription)}
+              className="text-blue-500 mt-2 cursor-pointer hover:underline"
+            >
+              {showFullDescription ? "Show Less" : "Read More"}
+            </button>
+          </div>
+
           <Review editReview={editReview} review={review} bookData={bookData} />
         </div>
       </div>

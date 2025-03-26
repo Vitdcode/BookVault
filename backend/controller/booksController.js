@@ -31,7 +31,7 @@ export const getAllBooks = async (req, res) => {
   }
 };
 
-export const getCountFinishedBooksCurrentYear = async (req, res) => {
+export const getStatisticsData = async (req, res) => {
   try {
     const { rows: rows1 } = await pool.query(
       "SELECT COUNT(*) FROM books WHERE year_completed <> '' AND year_completed::INTEGER = EXTRACT(YEAR FROM CURRENT_DATE)"
@@ -40,22 +40,21 @@ export const getCountFinishedBooksCurrentYear = async (req, res) => {
     const { rows: rows2 } = await pool.query(
       "SELECT COUNT(*) FROM books WHERE year_completed <> ''"
     );
-    /*     const countCurrentYear = { booksReadThisYear: rows1[0].count };
-    const allYearsCount = { booksReadAllYear: rows2[0].count };
 
-    console.log(rows); */
-    res.json({ booksReadThisYear: rows1[0].count, booksReadAllYear: rows2[0].count });
+    const { rows: rows3 } = await pool.query(
+      "SELECT SUM(page_count) FROM books WHERE year_completed <> ''"
+    );
+
+    res.json({
+      booksReadThisYear: rows1[0].count,
+      booksReadAllYear: rows2[0].count,
+      pagesReadCount: rows3[0].sum,
+    });
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
   }
 };
-
-/* export const getCountFinishedBooksAllYears = async (req, res) => {
-    try {
-        const {rows} = 
-    }
-} */
 
 export const deleteBook = async (req, res) => {
   try {
