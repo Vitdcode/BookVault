@@ -24,11 +24,13 @@ const CompletedStatus = ({ bookData }) => {
 
     if (!isCompleted) {
       updatedBooks = updatedBooks.map((book) =>
-        book.id === bookData.id ? { ...book, yearCompleted: new Date().getFullYear() } : book
+        book.googleBooksId === bookData.googleBooksId
+          ? { ...book, yearCompleted: new Date().getFullYear() }
+          : book
       );
     } else {
       updatedBooks = updatedBooks.map((book) =>
-        book.id === bookData.id ? { ...book, yearCompleted: "" } : book
+        book.googleBooksId === bookData.googleBooksId ? { ...book, yearCompleted: "" } : book
       );
     }
 

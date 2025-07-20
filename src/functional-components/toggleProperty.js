@@ -35,9 +35,9 @@ const toggleProperty = (
   ) {
     // Case 2: Remove the book if it has no other flags or review
 
-    bookApis.deleteBook(bookData.id);
+    bookApis.deleteBook(bookData.googleBooksId);
     window.location.href = "/search"; //user is redirected to search url as the data for the book no longer exist
-    updatedBooks = books.filter((book) => book.id !== booksExists.id);
+    updatedBooks = books.filter((book) => book.googleBooksId !== booksExists.googleBooksId);
   } else {
     // Case 3: Add a new book with the active property set to true
     let bookWithUpdatedFlag;

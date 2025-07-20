@@ -59,7 +59,10 @@ export const getStatisticsData = async (req, res) => {
 export const deleteBook = async (req, res) => {
   try {
     const { id } = req.params;
-    const deleteResult = await pool.query("DELETE FROM books WHERE id = $1 RETURNING *", [id]);
+    const deleteResult = await pool.query(
+      "DELETE FROM books WHERE google_books_id = $1 RETURNING *",
+      [id]
+    );
 
     if (deleteResult.rowCount === 0) {
       return res.status(404).json({ message: "Book not found" });

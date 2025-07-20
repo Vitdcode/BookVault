@@ -11,21 +11,15 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.11",
-    "@tiptap/extension-color": "^2.11.5",
-    "@tiptap/extension-hard-break": "^2.11.5",
-    "@tiptap/extension-highlight": "^2.11.5",
-    "@tiptap/extension-text-align": "^2.11.5",
-    "@tiptap/extension-text-style": "^2.11.5",
-    "@tiptap/pm": "^2.11.5",
-    "@tiptap/react": "^2.11.5",
-    "@tiptap/starter-kit": "^2.11.5",
     "express": "^4.21.2",
     "framer-motion": "^12.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
+    "react-markdown": "^10.1.0",
     "react-router-dom": "^7.2.0",
     "recharts": "^2.15.1",
+    "remark-breaks": "^4.0.0",
     "tailwindcss": "^4.0.11"
   },
   "devDependencies": {

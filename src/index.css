@@ -12,6 +12,55 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+p {
+  margin-bottom: 12px;
+}
+
+/* Heading Styles */
+
+h1 {
+  font-size: 2.5em; /* Roughly 40px */
+  line-height: 1.2;
+  margin-bottom: 0.75em;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 2em; /* Roughly 32px */
+  line-height: 1.3;
+  margin-bottom: 0.6em;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 1.75em; /* Roughly 28px */
+  line-height: 1.4;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 1.5em; /* Roughly 24px */
+  line-height: 1.5;
+  margin-bottom: 0.4em;
+  font-weight: bold;
+}
+
+h5 {
+  font-size: 1.25em; /* Roughly 20px */
+  line-height: 1.6;
+  margin-bottom: 0.3em;
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 1em; /* Roughly 16px - same as your body text */
+  line-height: 1.6;
+  margin-bottom: 0.25em;
+  font-weight: bold;
+  font-style: italic; /* Optional: to further differentiate from body text */
+}
+
 button:hover {
   cursor: pointer;
 }

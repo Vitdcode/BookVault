@@ -17,7 +17,6 @@ const BookPage = () => {
     books.find((b) => b.googleBooksId == id) || fetchedBooks.find((b) => b.googleBooksId === id);
   const review = books.find((book) => book.id === bookData.id)?.review || "";
   const [editReview, setEditReview] = useState(false);
-  bookData;
   if (!bookData) return;
   // depending on the route, the bookData will be either from the books state or the fetchedBooks state
 
@@ -49,7 +48,7 @@ const BookPage = () => {
           {/* Author and Publication Info */}
           <h2 className="font-bold text-2xl text-center md:text-left">{bookData.title}</h2>
           <div className="flex flex-col gap-2 p-5 rounded-xl bg-base-100 shadow-md border  border-gray-100">
-            <div className="">
+            <div>
               {bookData.authors.map((author, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <RxAvatar color="rgb(43, 127, 255)" size={20} />
@@ -60,14 +59,14 @@ const BookPage = () => {
               ))}
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex  gap-2">
               <GoBook color="rgb(43, 127, 255)" size={20} />
               <p className="font-medium">{bookData.pageCount} pages</p>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex gap-2">
               <FaRegCalendarAlt color="rgb(43, 127, 255)" size={20} />
-              <p className="font-medium ">
+              <p className="font-medium">
                 Published: <span className="">{convertToMetricDate(bookData.publishedDate)}</span>
               </p>
             </div>
